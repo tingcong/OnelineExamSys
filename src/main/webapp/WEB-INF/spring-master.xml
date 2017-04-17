@@ -22,24 +22,6 @@
     <!--DelegatingFilterProxy就是一个对于servlet filter的代理，用这个类的好处主要是通过spring容器来管理servlet filter的生命周期，还有就是如果filter中需要一些Spring容器的实例，可以通过spring直接注入，另外读取一些配置文件这些便利的操作都可以通过Spring来配置实现-->
     <bean id="springFilter" class="com.tc.filter.Demo"></bean>
 
-    <!-- 数据源 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"></bean>
-
-    <!-- 创建sqlSessionFactory -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" lazy-init="false">
-        <!-- 注入datasource，给sessionfactoryBean内setdatasource提供数据源 -->
-        <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
-        <!-- //加载实体类的映射文件位置及名称 -->
-        <property name="mappingLocations" value="classpath:com/tc/mapper/*.hbm.xml"></property>
-    </bean>
-
-    <!-- 开启事务注解驱动 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
-    </bean>
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-
     <!-- 国际化配置 -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="zh_CN"></property>
@@ -84,6 +66,34 @@
             </list>
         </property>
     </bean>
+
+
+    <!--*******************************************************-->
+    <!--  - - - - -    Hibernate -  spring 整合 - - - - - - - -->
+
+    <!-- 数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"></bean>
+
+    <!-- 创建sqlSessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" lazy-init="false">
+        <!-- 注入datasource，给sessionfactoryBean内setdatasource提供数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.tc.entity"/>
+    </bean>
+
+    <!-- 自动装载XxxMapper.xml文件，要求XxxMapper.java与XxxMapper.xml同名并在同一目录下 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.tc.mapper"></property>
+    </bean>
+
+    <!--注册事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 开启事务注解驱动 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
 
 
 
