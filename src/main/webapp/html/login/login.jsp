@@ -12,7 +12,7 @@
 	</head>
 <body>
 	<div class="login-wrap">
-		<form action="">
+		<form action="${pageContext.request.contextPath}/user/checkUserPwd.htm" method="post">
 			<h2>TC在线考试系统</h2>
 			<div class="tab">
 				<ul class="tabs">
@@ -21,10 +21,10 @@
 				</ul>
 			</div>
 			<div class="input-wrap input-msg">
-				<input type="text" id="userid" name="userid" placeholder="用户名" autofocus required />
+				<input type="text" id="userid" name="account" placeholder="用户名" autofocus required />
 			</div>
 			<div class="input-wrap input-msg">
-				<input type="password" id="password" name="password" placeholder="密码" required />
+				<input type="password" id="password" name="pwd" placeholder="密码" required />
 			</div>
 			<div class="input-wrap input-msg" id="checkCode-wrap">
 				<input type="text" id="checkCode-input" name="checkCode-check" placeholder="验证码" />

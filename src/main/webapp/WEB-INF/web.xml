@@ -6,8 +6,7 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
-<!--
-  &lt;!&ndash; Spring MVC's Servlet &ndash;&gt;
+  <!-- Spring MVC's Servlet -->
   <servlet>
     <servlet-name>springDispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -21,13 +20,13 @@
     <servlet-name>springDispatcher</servlet-name>
     <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
+
   <welcome-file-list>
-    <welcome-file>/login.jsp</welcome-file>
+    <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
-  <error-page>
-    <error-code>404</error-code>
-    <location>/common/404.jsp</location>
-  </error-page>
-  -->
+  <!--<error-page>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/common/404.jsp</location>-->
+  <!--</error-page>-->
 
 </web-app>

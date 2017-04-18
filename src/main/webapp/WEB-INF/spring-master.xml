@@ -69,16 +69,15 @@
 
 
     <!--*******************************************************-->
-    <!--  - - - - -    Hibernate -  spring 整合 - - - - - - - -->
+    <!--  - - - - -    mybaits 配置 - - - - - - - -->
 
     <!-- 数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"></bean>
 
     <!-- 创建sqlSessionFactory -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" lazy-init="false">
-        <!-- 注入datasource，给sessionfactoryBean内setdatasource提供数据源 -->
-        <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.tc.entity"/>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="typeAliasesPackage" value="com.irs.entity"></property>
     </bean>
 
     <!-- 自动装载XxxMapper.xml文件，要求XxxMapper.java与XxxMapper.xml同名并在同一目录下 -->
