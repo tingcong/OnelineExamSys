@@ -5,6 +5,15 @@
          version="3.0">
 
   <display-name>Archetype Created Web Application</display-name>
+  
+  
+  <!--<listener>-->
+    <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+  <!--</listener>-->
+  <!--监听session对象创建、销毁-->
+  <listener>
+    <listener-class>com.tc.listener.OnlineUserListen</listener-class>
+  </listener>
 
   <!-- Spring MVC's Servlet -->
   <servlet>

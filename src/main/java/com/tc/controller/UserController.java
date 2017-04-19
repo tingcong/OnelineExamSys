@@ -7,6 +7,7 @@ import com.tc.entity.Resp;
 import com.tc.entity.User;
 import com.tc.service.UserService;
 import com.tc.utils.ChkUtil;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +36,7 @@ public class UserController {
     @RequestMapping("checkUserPwd")
     @ResponseBody
     public Resp checkUserPwd(HttpServletRequest request, HttpServletResponse response,User userParam){
-        userParam.setAccount("胡廷聪");
-        userParam.setPwd("666666");
+        System.out.println(userParam.getAccount()+":"+userParam.getPwd());
        Resp resp=new Resp();
         try {
             //非空验证
@@ -45,7 +45,6 @@ public class UserController {
                 resp.setMsg(MsgConstants.LESS_PARAM);
                 return resp;
             }
-
             User onlineUser= (User) request.getSession().getAttribute(FieldConstants.ONLINE_USER);
             userParam.setAccount(onlineUser.getAccount());
             userParam.setPwd(ChkUtil.MD5(userParam.getPwd()));

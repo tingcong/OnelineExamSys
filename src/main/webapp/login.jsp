@@ -5,14 +5,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>TC Online Exam System</title>
 		<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<link href="css/login.css" rel="stylesheet" />
+		<link href="html/login/css/login.css" rel="stylesheet" />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-		<script src="js/login.js"></script>
+		<script src="html/login/js/login.js"></script>
 	</head>
 <body>
 	<div class="login-wrap">
-		<form action="${pageContext.request.contextPath}/user/checkUserPwd.htm" method="post">
+		<form action="${pageContext.request.contextPath}/login.htm" method="post">
 			<h2>TC在线考试系统</h2>
 			<div class="tab">
 				<ul class="tabs">
