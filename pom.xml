@@ -168,6 +168,10 @@
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
             </resource>
         </resources>
     </build>

@@ -63,9 +63,10 @@ public class LoginController {
             application.setAttribute(session.getId(),session);
 
             //返回主页面
-            return new ModelAndView(UrlConstants.REDIRECT_INDEX_JSP);
+            return new ModelAndView(UrlConstants.REDIRECT_STUDENT_INDEX_JSP);
         } catch (Exception e) {
             e.printStackTrace();
+
             return new ModelAndView(UrlConstants.LOGIN,FieldConstants.ERR,MsgConstants.LOGIN_FAIL);
         }
     }

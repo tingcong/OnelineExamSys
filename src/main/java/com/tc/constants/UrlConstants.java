@@ -7,7 +7,7 @@ public class UrlConstants {
     /**
      * 项目名 webProjectDemo
      */
-    public static final String PROJECT_NAME = "MUT";
+    public static final String PROJECT_NAME = "";
 
     /**
      * 主页面 index.jsp
@@ -15,9 +15,9 @@ public class UrlConstants {
     public static final String INDEX_JSP = "index.jsp";
 
     /**
-     * 重定向主页面 redirect:index.jsp
+     * 重定向学生首页面 redirect:index.jsp
      */
-    public static final String REDIRECT_INDEX_JSP = "redirect:index.jsp";
+    public static final String REDIRECT_STUDENT_INDEX_JSP = "redirect:html/manage/student.html";
 
     /**
      * 登陆页面 login.jsp

@@ -10,4 +10,17 @@
         </if>
     </select>
 
+    <!--根据账户查询用户信息-->
+    <select id="getUserInfoByAccount" parameterType="User" resultType="User" >
+        SELECT
+            id,
+            name,
+            account
+        FROM
+            tab_user u
+        WHERE
+            1=1
+        AND u.account = #{account}
+        AND u.pwd = #{pwd}
+    </select>
 </mapper>
