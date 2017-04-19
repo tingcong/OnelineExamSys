@@ -3,14 +3,15 @@
 String userid = request.getParameter("userid");
 String username = request.getParameter("username");
 %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
 <title>在线考试系统</title>
-<link href="manage/css/manage.css" type="text/css" rel="stylesheet">
-<script src="manage/js/jquery.min.js"></script>
-<script src="manage/js/manage.js"></script>
+<link href="${pageContext.request.contextPath}/jsp/manage/css/manage.css" type="text/css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/jsp/manage/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/manage/js/manage.js"></script>
 </head>
 <body style="overflow:scroll;"> 
 <header>
@@ -23,8 +24,8 @@ String username = request.getParameter("username");
 </div>
 </header>
 <div class="main">
-<input type="hidden" id="userid" value="<%=userid%>">
-<input type="hidden" id="username" value="<%=username%>">
+<input type="hidden" id="userid" value="${sessionScope.onlineUser.id}">
+<input type="hidden" id="username" value="${sessionScope.onlineUser.name}">
 	<div class="mainleft leftF">
 		<div class="bigperson">
 			<div class="touxiang">

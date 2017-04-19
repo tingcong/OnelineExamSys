@@ -17,7 +17,7 @@ public class UrlConstants {
     /**
      * 重定向学生首页面 redirect:index.jsp
      */
-    public static final String REDIRECT_STUDENT_INDEX_JSP = "redirect:html/manage/student.html";
+    public static final String REDIRECT_STUDENT_INDEX_JSP = "redirect:jsp/manage/student.jsp";
 
     /**
      * 登陆页面 login.jsp
