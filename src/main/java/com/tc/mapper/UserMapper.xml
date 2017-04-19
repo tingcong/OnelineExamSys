@@ -3,7 +3,7 @@
 <mapper namespace="com.tc.mapper.UserMapper">
 
     <!--查询账号数量-->
-    <select id="getUserNum" parameterType="User" resultType="java.lang.Integer">
+    <select id="getUserNum" parameterType="com.tc.entity.User" resultType="java.lang.Integer">
         SELECT count(1) from tab_user where 1=1
         <if test="account != null and account !=''">
             AND account=#{account}

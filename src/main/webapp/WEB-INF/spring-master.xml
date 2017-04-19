@@ -76,7 +76,6 @@
         </property>
     </bean>
 
-
     <!--*******************************************************-->
     <!--  - - - - -    mybaits 配置 - - - - - - - -->
 
@@ -86,7 +85,11 @@
     <!-- 创建sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
-        <property name="typeAliasesPackage" value="com.irs.entity"></property>
+
+        <!--<property name="typeAliasesPackage" value="com.tc.mapper"></property>-->
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:com/tc/mapper/*.xml"></property>
+        <property name="typeAliasesPackage" value="com.tc.entity"></property>
     </bean>
 
     <!-- 自动装载XxxMapper.xml文件，要求XxxMapper.java与XxxMapper.xml同名并在同一目录下 -->
@@ -101,8 +104,5 @@
 
     <!-- 开启事务注解驱动 -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-
-
-
 
 </beans>

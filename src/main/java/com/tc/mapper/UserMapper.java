@@ -15,4 +15,5 @@ public interface UserMapper {
 
     //修改用户密码
     int updatePwd(User user);
+
 }

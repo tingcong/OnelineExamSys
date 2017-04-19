@@ -2,7 +2,6 @@ package com.tc.service;
 
 import com.tc.entity.User;
 import com.tc.mapper.UserMapper;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,4 +40,6 @@ public class UserService {
     public int updatePwd(User user){
         return userMapper.updatePwd(user);
     }
+
+
 }
