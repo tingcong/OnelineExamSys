@@ -20,7 +20,7 @@
     <context:component-scan base-package="com.*"></context:component-scan>
 
     <!--DelegatingFilterProxy就是一个对于servlet filter的代理，用这个类的好处主要是通过spring容器来管理servlet filter的生命周期，还有就是如果filter中需要一些Spring容器的实例，可以通过spring直接注入，另外读取一些配置文件这些便利的操作都可以通过Spring来配置实现-->
-    <bean id="springFilter" class="com.tc.filter.Demo"></bean>
+    <bean id="springFilter" class="com.tc.filter.PermissionFilter"></bean>
 
     <!-- 国际化配置 -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">

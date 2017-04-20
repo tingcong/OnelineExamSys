@@ -19,36 +19,36 @@ String username = request.getParameter("username");
 	<span>在线考试系统</span>
 	<div id="logout">
 		<i class="fa fa-sign-out"></i>
-		<a href="index.jsp?quit=1">退出</a>
+		<a onclick="exit()">退出</a>
 	</div>
 </div>
 </header>
 <div class="main">
-<input type="hidden" id="userid" value="${sessionScope.onlineUser.id}">
-<input type="hidden" id="username" value="${sessionScope.onlineUser.name}">
+<input type="hidden" id="userid" value="${onlineUser.id}"/>
+<input type="hidden" id="username" value="${onlineUser.name}">
 	<div class="mainleft leftF">
 		<div class="bigperson">
 			<div class="touxiang">
-				<img id="mainphoto" src="manage/img/<%=userid%>.jpg" width="100" height="100">
+				<img id="mainphoto" src="${pageContext.request.contextPath}/img/touxiang/${onlineUser.account}.jpg" width="100" height="100">
 			</div>
-			<div class="personname"><%=username%></div>			  
+			<div class="personname">${onlineUser.name}</div>
 	    </div>
 		<div style="height:72px;"></div>
 		<div class="funclist">
 			<ul class="funclistul">
-				<li id="manage/student_ing.jsp?userid=<%=userid%>&username=<%=username%>">
+				<li id="${pageContext.request.contextPath}/html/manage/student_ing.html">
 					<a href="#">
 						<ul class="funclistul">正在进行的考试</ul>
 					</a>
 		    	</li>
 				<li class="line"></li>					
-				<li id="manage/student_be.jsp?userid=<%=userid%>">
+				<li id="${pageContext.request.contextPath}/html/manage/student_be.html">
 		    		<a href="#">
 						<ul class="funclistul">即将到来的考试</ul>
 					</a>
 				</li>
 				<li class="line"></li>										
-				<li id="manage/student_ed.jsp?userid=<%=userid%>">
+				<li id="manage/student_ed.jsp?userid=${sessionScope.onlineUser.id}">
 		    		<a href="#">
 						<ul class="funclistul">已经结束的考试</ul>
 					</a>
@@ -62,8 +62,17 @@ String username = request.getParameter("username");
 	</div>
 	<div class="clear"></div>
 </div>
+
 <div class="foot">
-	<span>Copyright © Jackeriss, Franky Shy</span>
+	<span>Copyright © hutingcong, Franky Shy</span>
 </div>
 </body>
+
+<script type="text/javascript">
+	function exit() {
+		if(confirm("确认退出吗？")){
+		    location.href='/OES/exit.htm';
+		}
+    }
+</script>
 </html>

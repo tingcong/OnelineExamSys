@@ -26,11 +26,11 @@
 			<div class="input-wrap input-msg">
 				<input type="password" id="password" name="pwd" placeholder="密码" required />
 			</div>
-			<div class="input-wrap input-msg" id="checkCode-wrap">
-				<input type="text" id="checkCode-input" name="checkCode-check" placeholder="验证码" />
-				<span class="input-check" id="checkCode-check">×</span>
-				<div id="checkCode"></div>
-			</div>
+			<%--<div class="input-wrap input-msg" id="checkCode-wrap">--%>
+				<%--<input type="text" id="checkCode-input" name="checkCode-check" placeholder="验证码" />--%>
+				<%--<span class="input-check" id="checkCode-check">×</span>--%>
+				<%--<div id="checkCode"></div>--%>
+			<%--</div>--%>
 			<div class="input-wrap">
 				<input type="submit" value="登录" />
 			</div>
