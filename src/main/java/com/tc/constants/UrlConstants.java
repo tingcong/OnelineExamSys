@@ -7,7 +7,7 @@ public class UrlConstants {
     /**
      * 项目名 webProjectDemo
      */
-    public static final String PROJECT_NAME = "";
+    public static final String PROJECT_NAME = "OES";
 
     /**
      * 主页面 index.jsp
