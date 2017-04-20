@@ -4,10 +4,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>TC Online Exam System</title>
-		<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 		<link href="html/login/css/login.css" rel="stylesheet" />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/jQuery/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 		<script src="html/login/js/login.js"></script>
 	</head>
 <body>
@@ -37,4 +35,12 @@
 		</form>
 	</div>
 </body>
+
+<script type="text/javascript">
+	$(function () {
+		if("${err}".length !=0){
+		    alert("${err}");
+        }
+    });
+</script>
 </html>
