@@ -62,6 +62,9 @@ public class LoginController {
             application.setAttribute(FieldConstants.SESSION_ID,session.getId());
             application.setAttribute(session.getId(),session);
 
+            /**
+             * 学生账号为学号
+             */
             //返回主页面
             return new ModelAndView(UrlConstants.REDIRECT_STUDENT_INDEX_JSP);
         } catch (Exception e) {
