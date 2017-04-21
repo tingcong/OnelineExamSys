@@ -36,19 +36,19 @@ String username = request.getParameter("username");
 		<div style="height:72px;"></div>
 		<div class="funclist">
 			<ul class="funclistul">
-				<li id="${pageContext.request.contextPath}/html/manage/student_ing.html">
+				<li id="student_ing.jsp">
 					<a href="#">
 						<ul class="funclistul">正在进行的考试</ul>
 					</a>
 		    	</li>
 				<li class="line"></li>					
-				<li id="${pageContext.request.contextPath}/html/manage/student_be.html">
+				<li id="student_be.jsp">
 		    		<a href="#">
 						<ul class="funclistul">即将到来的考试</ul>
 					</a>
 				</li>
 				<li class="line"></li>										
-				<li id="manage/student_ed.jsp?userid=${sessionScope.onlineUser.id}">
+				<li id="student_ed.jsp">
 		    		<a href="#">
 						<ul class="funclistul">已经结束的考试</ul>
 					</a>
