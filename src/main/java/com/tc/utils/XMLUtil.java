@@ -21,7 +21,7 @@ public class XMLUtil {
      * 生成试卷模板
      * src/main/webapp/file/paperModel/江西师大毕业考试.xml
      *
-     * @param path
+     * @param path  文件路径
      * @throws Exception
      */
     public static void createPaperModel(String path) throws Exception {
@@ -59,6 +59,17 @@ public class XMLUtil {
             writer.write(doc);
             writer.close();
         }
+    }
+
+
+    /**
+     * 生成结果卷模板
+     *
+     * @param path  文件路径
+     * @throws Exception
+     */
+    public static void createPaperResultModel(String path){
+
     }
 
     public static void main(String[] args) throws Exception {
