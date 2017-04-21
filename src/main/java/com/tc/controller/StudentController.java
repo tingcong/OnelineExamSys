@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,15 +22,13 @@ public class StudentController {
 
     @RequestMapping("getExamBe")
     @ResponseBody
-    public ModelAndView getExamBe(HttpServletRequest req, HttpServletResponse resp ) {
-        ModelAndView modelAndView=new ModelAndView();
+    public List<ExamPlan> getExamBe(HttpServletRequest req, HttpServletResponse resp ) {
         List<ExamPlan> examBeList=studentService.getExamBe(1310400114);
         if(examBeList.size()==0){
             System.out.println("null");
         }else {
             System.out.println("get data");
         }
-        modelAndView.addObject("examBeList",examBeList);
-        return modelAndView;
+        return examBeList;
     }
 }

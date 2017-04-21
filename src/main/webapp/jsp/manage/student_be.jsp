@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="css/manage.css" type="text/css" rel="stylesheet">
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+
+	<link href="css/manage.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<div class="Wrapbody">
@@ -14,19 +16,37 @@
 			</li>
 		</ul>
 		<div class="ulDiv">
-			<ul>
-
-			 	<li>
-					<div class="Mconright">							
-						<h3 class="clearfix"></h3>
-						<p>任课教师：</p>
-						<p>考试限时：</p>
-					   	<p>开始时间：</p>
-					   	<p>结束时间：</p>
-					</div>
-				</li>
+			<ul id="resultList">
+				<%--<c:forEach items="examBeList" var="item" varStatus="status">--%>
+					<%--<li>--%>
+						<%--<div class="Mconright">--%>
+							<%--<h3 class="clearfix"></h3>--%>
+							<%--<p>任课教师：${onlineUser.name}</p>--%>
+							<%--<p>考试限时：${item}</p>--%>
+							<%--<p>开始时间：${item}</p>--%>
+							<%--<p>结束时间：${item}</p>--%>
+						<%--</div>--%>
+					<%--</li>--%>
+				<%--</c:forEach>--%>
 			</ul>
 		</div>
 	</div>
+<script type="text/javascript">
+	$(function () {
+		$.get("${pageContext.request.contextPath}/student/getExamBe.htm",function (data) {
+			var list=eval(data);
+			for(i=0;i<list.length;i++){
+                $("#resultList").append(
+                    "<li><div class='Mconright'>" +
+					"<h3 class='clearfix'>"+"2015上学年智商期末测试"+"</h3>"+
+                    "<p>试卷编号:"+list[i].paperId+"</p>"+
+                    "<p>考试限时:"+(list[i].examEndDatetime-list[i].examStartDatetime)+"</p>"+
+                    "<p>开始时间:"+list[i].examStartDatetime+"</p>"+
+                    "<p>结束时间:"+list[i].examEndDatetime+"</p>"+
+                    "</li>");
+			}
+        });
+    })
+</script>
 </body>
 </html>

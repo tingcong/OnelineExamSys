@@ -2,7 +2,7 @@ package com.tc.service;
 
 import com.tc.entity.ExamPlan;
 import com.tc.mapper.ExamPlanMapper;
-import com.tc.utils.GetDatetimeUtil;
+import com.tc.utils.DatetimeUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class StudentService {
     public List<ExamPlan> getExamBe(Integer studentId){
         Map map=new HashedMap();
         map.put("studentId",studentId);
-        map.put("nowDatetime", GetDatetimeUtil.getLocalDatetime());
+        map.put("nowDatetime", DatetimeUtil.getLocalDatetime());
         return examPlanMapper.getExamBe(map);
     }
 }

@@ -1,5 +1,7 @@
 package com.tc.utils;
 
+import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -8,7 +10,7 @@ import java.util.Date;
  *
  * Created by htc on 2017/4/21.
  */
-public class GetDatetimeUtil {
+public class DatetimeUtil {
 
     /**
      * Java时间设为二十四小时制和十二小时制的区别：
@@ -22,8 +24,13 @@ public class GetDatetimeUtil {
         return simpleDateFormat.format(new Date());
     }
 
-    public static void main(String[] args) {
-        System.out.println(getLocalDatetime());
+    public static void getMinutes(String start, String end) throws ParseException {
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        ParsePosition parsePosition=new ParsePosition(1);
+        System.out.println( format.parse(start,parsePosition));
+    }
 
+    public static void main(String[] args) throws ParseException {
+        getMinutes("2020-04-25 01:42:28.00000","22020-04-25 03:42:28.00000");
     }
 }

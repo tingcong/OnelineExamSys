@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<questions>
-    <question>
-        <questionID>1</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>2</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>3</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>4</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>5</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>6</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>7</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>8</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-    <question>
-        <questionID>9</questionID>
-        <finalScore>2</finalScore>
-        <yourAnswer></yourAnswer>
-    </question>
-</questions>
+<paperResult>
+    <head>
+        <id>1</id>
+        <yourScore>18</yourScore>
+        <teacher>tingcong</teacher>
+    </head>
+    <body>
+        <questions>
+            <question id="1">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="2">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="3">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="4">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="5">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="6">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="7">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="8">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+            <question id="9">
+                <finalScore>2</finalScore>
+                <yourAnswer></yourAnswer>
+            </question>
+        </questions>
+    </body>
+</paperResult>
 

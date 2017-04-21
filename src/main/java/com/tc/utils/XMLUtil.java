@@ -7,7 +7,6 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
@@ -68,14 +67,31 @@ public class XMLUtil {
      * @param path  文件路径
      * @throws Exception
      */
-    public static void createPaperResultModel(String path){
+    public static void createPaperResultModel(String path) throws Exception {
+        Document doc=DocumentHelper.createDocument();
+
+        Element rootElem=doc.addElement("paperResult");
+        Element headElem=rootElem.addElement("head");
+        headElem.addElement("id");
+        headElem.addElement("yourScore");
+        headElem.addElement("teacher");
+        Element body=rootElem.addElement("body");
+
+        FileOutputStream ou=new FileOutputStream(path);
+        OutputFormat format=OutputFormat.createPrettyPrint();
+        format.setEncoding("UTF-8");
+
+        XMLWriter writer=new XMLWriter(ou,format);
+        writer.write(doc);
+        writer.close();
 
     }
 
     public static void main(String[] args) throws Exception {
         String path = "src/main/webapp/file/paperModel/";
         String fileName = "江西师大毕业考试";
-        createPaperModel(path+fileName+".xml");
+//        createPaperModel(path+fileName+".xml");
+        createPaperResultModel(path+fileName+"1310400114"+".xml");
         System.out.println(path + fileName + ".xml");
     }
 }

@@ -353,7 +353,7 @@ header #exam_top {z-index:999!important;position: fixed; opacity:0.9; top: 0; ri
 .student_list,
 .student_list div,
 .student_list div div{
-	background:#fff!importent;
+	background:#fff!important;
 }
 @media screen and (max-width: 1400px){
 	.marklist {
