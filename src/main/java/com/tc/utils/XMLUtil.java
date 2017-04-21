@@ -2,6 +2,7 @@ package com.tc.utils;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
@@ -14,10 +15,34 @@ import java.io.FileOutputStream;
  * Created by htc on 2017/4/21.
  */
 public class XMLUtil {
-    public static void createXMLFile(String path) throws Exception {
+
+    /**
+     * 生成试卷模板
+     *  src/main/webapp/file/paperModel/江西师大毕业考试.xml
+     * @param path
+     * @throws Exception
+     */
+    public static void createPaperModel(String path) throws Exception {
         Document doc= DocumentHelper.createDocument();
 
-    //指定输出路径
+        //生成试卷
+        Element rootElem=doc.addElement("paper");
+        //试卷头
+        Element headElem=rootElem.addElement("head");
+        headElem.addElement("id");
+        headElem.addElement("tittle");
+        headElem.addElement("score");
+        headElem.addElement("author");
+        headElem.addElement("limitTime");
+        //试卷体
+        Element bodyElem=rootElem.addElement("body");
+        bodyElem.addElement("singleChoiceQuestions");
+        bodyElem.addElement("multipleChoiceQuestions");
+        bodyElem.addElement("clozes");
+        bodyElem.addElement("judgmentQuestions");
+        bodyElem.addElement("essayQuestions");
+
+        //指定输出路径
         FileOutputStream fileOutputStream=new FileOutputStream(path);
         //指定文件格式
         OutputFormat outputFormat=OutputFormat.createPrettyPrint();
@@ -25,7 +50,6 @@ public class XMLUtil {
         outputFormat.setEncoding("UTF-8");
 
         XMLWriter writer=new XMLWriter(fileOutputStream,outputFormat);
-
         writer.write(doc);
         writer.close();
     }
@@ -33,6 +57,7 @@ public class XMLUtil {
     public static void main(String[] args) throws Exception{
         String path="src/main/webapp/file/paperModel/";
         String fileName="江西师大毕业考试";
-        createXMLFile(path+fileName+".xml");
+//        createPaperModel(path+fileName+".xml");
+        System.out.println(path+fileName+".xml");
     }
 }
