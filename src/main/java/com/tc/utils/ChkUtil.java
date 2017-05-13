@@ -52,7 +52,7 @@ public class ChkUtil {
 
     public static void main(String[] args) {
         System.out.println(MD5("123456789"));
-        System.out.println(MD5("abcde"));
+        System.out.println(MD5("1"));
     }
 }
 

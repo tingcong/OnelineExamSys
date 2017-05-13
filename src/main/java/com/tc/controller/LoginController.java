@@ -3,7 +3,9 @@ package com.tc.controller;
 import com.tc.constants.FieldConstants;
 import com.tc.constants.MsgConstants;
 import com.tc.constants.UrlConstants;
+import com.tc.entity.Teacher;
 import com.tc.entity.User;
+import com.tc.service.TeacherService;
 import com.tc.service.UserService;
 import com.tc.utils.ChkUtil;
 import org.junit.Test;
@@ -25,8 +27,12 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TeacherService teacherService;
+
     /**
      * 登陆
+     *
      * @param request
      * @param response
      * @param session
@@ -34,61 +40,72 @@ public class LoginController {
      * @return
      */
     @RequestMapping("login")
-    public ModelAndView login(HttpServletRequest request, HttpServletResponse response, HttpSession session,User userParam){
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response, HttpSession session, User userParam) {
         try {
             //判断参数
-            if (userParam==null || ChkUtil.isEmpty(userParam.getAccount()) ||ChkUtil.isEmpty(userParam.getPwd())){
+            if (userParam == null || ChkUtil.isEmpty(userParam.getAccount()) || ChkUtil.isEmpty(userParam.getPwd())) {
                 return new ModelAndView(UrlConstants.LOGIN, FieldConstants.ERR, MsgConstants.LESS_PARAM);
             }
 
             //验证账号
-            int i=userService.getUserNum(userParam);
-            if(i==0){
-                return new ModelAndView(UrlConstants.LOGIN,FieldConstants.ERR,MsgConstants.ACCOUNT_NOT_EXIST);
+            int i = userService.getUserNum(userParam);
+            if (i == 0) {
+                return new ModelAndView(UrlConstants.LOGIN, FieldConstants.ERR, MsgConstants.ACCOUNT_NOT_EXIST);
             }
-            String password=ChkUtil.MD5(userParam.getPwd());
+            String password = ChkUtil.MD5(userParam.getPwd());
             userParam.setPwd(password);
 
             //验证密码
-            User user=userService.getUserInfoByAccount(userParam);
-            if(user==null){
-                return new ModelAndView(UrlConstants.LOGIN,FieldConstants.ERR,MsgConstants.PASSWORD_ERROR);
+            User user = userService.getUserInfoByAccount(userParam);
+            if (user == null) {
+                return new ModelAndView(UrlConstants.LOGIN, FieldConstants.ERR, MsgConstants.PASSWORD_ERROR);
             }
+
             //放入session
-            session.setAttribute(FieldConstants.ONLINE_USER,user);
+            session.setAttribute(FieldConstants.ONLINE_USER, user);
 
-            ServletContext application=session.getServletContext();
-            application.setAttribute(FieldConstants.NEW_SESSION_ID,session.getId());
-            application.setAttribute(FieldConstants.SESSION_ID,session.getId());
-            application.setAttribute(session.getId(),session);
+            ServletContext application = session.getServletContext();
+            application.setAttribute(FieldConstants.NEW_SESSION_ID, session.getId());
+            application.setAttribute(FieldConstants.SESSION_ID, session.getId());
+            application.setAttribute(session.getId(), session);
 
-            /**
-             * 学生账号为学号
-             */
-            //返回主页面
-            return new ModelAndView(UrlConstants.REDIRECT_STUDENT_INDEX_JSP);
+            //验证权限
+            //Teacher teacher = teacherService.getTeacherInfoByID(Integer.parseInt(userParam.getAccount()));
+            if (userParam.getAccount().length() >4 ) {
+                /**
+                 * 学生账号为学号
+                 */
+                //返回主页面
+                return new ModelAndView(UrlConstants.REDIRECT_STUDENT_INDEX_JSP);
+            }else {
+                /**
+                 *  账号为教师工号
+                 */
+                //返回教师首页
+                return new ModelAndView(UrlConstants.REDIRECT_TEACHER_INDEX_JSP);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-
-            return new ModelAndView(UrlConstants.LOGIN,FieldConstants.ERR,MsgConstants.LOGIN_FAIL);
+            return new ModelAndView(UrlConstants.LOGIN, FieldConstants.ERR, MsgConstants.LOGIN_FAIL);
         }
     }
 
     /**
      * 退出登陆
+     *
      * @param request
      * @param response
      * @param session
      * @return
      */
     @RequestMapping("exit")
-    public ModelAndView exit(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+    public ModelAndView exit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         try {
             session.invalidate();
             return new ModelAndView(UrlConstants.REDIRECT_LOGIN_JSP);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ModelAndView(UrlConstants.LOGIN,FieldConstants.ERR,MsgConstants.EXIT_FAIL);
+            return new ModelAndView(UrlConstants.LOGIN, FieldConstants.ERR, MsgConstants.EXIT_FAIL);
         }
     }
 

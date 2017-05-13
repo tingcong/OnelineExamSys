@@ -1,7 +1,7 @@
 <c3p0-config>
 	<default-config>
 
-		<property name="jdbcUrl">jdbc:mysql://123.207.44.63:3306/OES</property>
+		<property name="jdbcUrl">jdbc:mysql://123.206.212.81:3306/OES</property>
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
 		<property name="user">root</property>
 		<property name="password">hutingcong</property>

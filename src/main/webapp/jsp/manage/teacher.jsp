@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-String userid = request.getParameter("userid");
-String username = request.getParameter("username");
+	String userid = request.getParameter("userid");
+	String username = request.getParameter("username");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
 <title>在线考试系统</title>
-<link href="manage/css/manage.css" type="text/css" rel="stylesheet">
-<script src="manage/js/jquery.min.js"></script>
-<script src="manage/js/manage.js"></script>
+<link href="${pageContext.request.contextPath}/jsp/manage/css/manage.css" type="text/css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/jsp/manage/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/jsp/manage/js/manage.js"></script>
 </head>
 <body style="overflow:scroll;"> 
 <header>
@@ -18,7 +19,7 @@ String username = request.getParameter("username");
 	<span>在线考试系统</span>
 	<div id="logout">
 		<i class="fa fa-sign-out"></i>
-		<a href="index.jsp?quit=1">退出</a>
+		<a href="#" onclick="exit()">退出</a>
 	</div>
 </div>
 </header>
@@ -28,14 +29,14 @@ String username = request.getParameter("username");
 	<div class="mainleft leftF">
 		<div class="bigperson">
 			<div class="touxiang">
-				<img id="mainphoto" src="manage/img/<%=userid%>.jpg" width="100" height="100">
+				<img id="mainphoto" src="${pageContext.request.contextPath}/img/touxiang/${onlineUser.account}.jpg" width="100" height="100">
 			</div>
-			<div class="personname"><%=username%></div>			  
+			<div class="personname">${onlineUser.name}</div>
 	    </div>
 		<div style="height:72px;"></div>
 		<div class="funclist">
 			<ul class="funclistul">
-				<li id="manage/teacher_set.jsp?userid=<%=userid%>">
+				<li id="teacher_set.jsp">
 					<a href="#">
 						<ul class="funclistul">等待设置的考试</ul>
 					</a>
@@ -71,4 +72,11 @@ String username = request.getParameter("username");
 	<span>Copyright © Jackeriss, Franky Shy</span>
 </div>
 </body>
+<script type="text/javascript">
+    function exit() {
+        if(confirm("确认退出吗？")){
+            location.href='/OES/exit.htm';
+        }
+    }
+</script>
 </html>

@@ -69,10 +69,10 @@ String username = request.getParameter("username");
 </body>
 
 <script type="text/javascript">
-	function exit() {
-		if(confirm("确认退出吗？")){
-		    location.href='/OES/exit.htm';
-		}
-    }
+        function exit() {
+            if(confirm("确认退出吗？")){
+                location.href='/OES/exit.htm';
+            }
+        }
 </script>
 </html>
