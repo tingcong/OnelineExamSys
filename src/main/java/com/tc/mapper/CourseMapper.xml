@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tc.mapper.CourseMapper">
+
+    <!--<resultMap id="courseMap" type="com.tc.entity.Course">-->
+        <!--<id property="courseId" column="ID"></id>-->
+        <!--<result property="courseName" column="course_name"></result>-->
+    <!--</resultMap>-->
+    <!--获取所有课程名称放入下拉列表-->
+    <select id="getCourseInfoForSelect" resultType="com.tc.entity.Course">
+        SELECT
+          ID AS courseId,
+          course_name AS courseName
+        FROM
+        tab_subject
+    </select>
+</mapper>
