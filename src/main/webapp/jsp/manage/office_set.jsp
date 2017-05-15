@@ -1,28 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="DB.DBHelper" %>
-<%
-String userid = request.getParameter("userid");
-String username = request.getParameter("username");
-ArrayList<String> courseid = new ArrayList<String>();
-ArrayList<String> coursename = new ArrayList<String>();
-ArrayList<String> teacherid = new ArrayList<String>();
-ArrayList<String> teachername = new ArrayList<String>();
-String sql1="SELECT * FROM course";
-DBHelper.getConnection();
-ResultSet rs1 = DBHelper.Query(sql1);
-while(rs1.next()){
-	courseid.add(rs1.getString("courseID"));
-	coursename.add(rs1.getString("name"));
-}
-String sql2="SELECT * FROM teacher";
-ResultSet rs2 = DBHelper.Query(sql2);
-while(rs2.next()){
-	teacherid.add(rs2.getString("teacherID"));
-	teachername.add(rs2.getString("name"));
-}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,25 +19,15 @@ while(rs2.next()){
 		<div class="Div">
 			<select id="course">
 				<option value="0">请选择科目</option>
-				<%
-				for(int i = 0;i<courseid.size();i++){
-				%>
-				<option value="<%=courseid.get(i)%>"><%=coursename.get(i)%></option>
-				<%
-				}
-				%>
+				<option value="a">语文</option>
+				<option value="a">数学</option>
+				<option value="a">英语</option>
 			</select>
 			
 			<select id="teacher">
 				<option value="0">请选择出题教师</option>
-				<%
-				
-				for(int i = 0;i<teacherid.size();i++){
-				%>
-				<option value="<%=teacherid.get(i)%>"><%=teachername.get(i)%></option>
-				<%
-				}
-				%>
+				<option value="1001">欧阳丹丹</option>
+				<option value="1002">刘梅</option>
 			</select>
 			<div class="block">
 				<div class="aline">

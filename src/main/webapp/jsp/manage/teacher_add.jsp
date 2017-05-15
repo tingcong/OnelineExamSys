@@ -1,20 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="DB.DBHelper" %>
-<%
-String teacherID = request.getParameter("teacherID");
-String courseID = request.getParameter("courseID");
-ArrayList<String> courseid = new ArrayList<String>();
-ArrayList<String> coursename = new ArrayList<String>();
-String sql="SELECT * FROM course";
-DBHelper.getConnection();
-ResultSet rs = DBHelper.Query(sql);
-while(rs.next()){
-	courseid.add(rs.getString("courseID"));
-	coursename.add(rs.getString("name"));
-}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +10,7 @@ while(rs.next()){
 <script src="js/teacher_add.js"></script>
 </head>
 <body>
-<input type="hidden" id="teacherid" value="<%=teacherID%>">
+<input type="hidden" id="teacherid" value="">
 	<div class="Wrapbody">
 		<ul class="zla_m_tab" id="zla_title">
 			<li class="zla_m_item zla_m_cur">
@@ -36,13 +20,8 @@ while(rs.next()){
 		<div class="Div">
 			<select id="course">
 				<option value="0">请选择试题科目</option>
-				<%
-				for(int i = 0;i<courseid.size();i++){
-				%>
-				<option value="<%=courseid.get(i)%>"><%=coursename.get(i)%></option>
-				<%
-				}
-				%>
+				<option value="a">语文</option>
+				<option value="a">数学</option>
 			</select>
 			<select id="question_type">
 				<option value="0">请选择题目类型</option>

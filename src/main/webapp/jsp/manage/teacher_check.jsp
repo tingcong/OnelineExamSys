@@ -1,13 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="XML.examinationBean" %>
-<%@ page import="Logic.timeHelper" %>
-<%@ page import="Logic.getExam" %>
-<%
-String userid = request.getParameter("userid");
-ArrayList<examinationBean> exam = new ArrayList<examinationBean>();
-exam = getExam.get("teacher",userid,"ed","1","1");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,26 +14,16 @@ exam = getExam.get("teacher",userid,"ed","1","1");
 		</ul>
 		<div class="ulDiv">
 			<ul>
-				<%
-				for(int i = 0; i < exam.size(); i++){
-					String dateBeginStamp = exam.get(i).getDateBegin();
-					String dateEndStamp = exam.get(i).getDateEnd();
-					String dateBegin = timeHelper.timeStamp2Date(dateBeginStamp,"yyyy年MM月dd日 HH:mm");
-					String dateEnd = timeHelper.timeStamp2Date(dateEndStamp,"yyyy年MM月dd日 HH:mm");
-				%>
 			 	<li>
-			 		<a href="teacher_check_detail.jsp?examid=<%=exam.get(i).getExaminationID()%>">
+			 		<a href="teacher_check_detail.jsp">
 						<div class="Mconright">							
-							<h3 class="clearfix"><%=exam.get(i).getExaminationName()%></h3>
+							<h3 class="clearfix"></h3>
 							<br><br>
-						   	<p>开始时间：<%=dateBegin%></p>
-						   	<p>结束时间：<%=dateEnd%></p>	
+						   	<p>开始时间：</p>
+						   	<p>结束时间：</p>
 						</div>
 					</a>
 				</li>
-				<%
-				}
-				%>
 			</ul>
 		</div>
 	</div>
