@@ -31,8 +31,6 @@ import java.util.Map;
 public class ExamPlanController {
     @Autowired
     private ExamPlanService examPlanService;
-
-
     @RequestMapping("insertExamPlan")
     @ResponseBody
     public Resp insertExamPlan(HttpServletRequest request, HttpServletResponse response){
