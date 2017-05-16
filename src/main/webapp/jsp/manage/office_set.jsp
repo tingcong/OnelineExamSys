@@ -26,18 +26,24 @@
         </li>
     </ul>
     <div class="Div">
-        <select id="course">
-            <option value="none">请选择科目</option>
-            <option value="none">语文</option>
-            <option value="none">数学</option>
-            <option value="none">英语</option>
+        <select id="subject" style="width: 298px; height: 40px;">
+            <option value="none" selected="selected">请选择科目</option>
         </select>
+        <%--<select id="course">--%>
+        <%--<option value="none">请选择科目</option>--%>
+        <%--<option value="none">语文</option>--%>
+        <%--<option value="none">数学</option>--%>
+        <%--<option value="none">英语</option>--%>
+        <%--</select>--%>
 
-        <select id="teacher">
-            <option value="0">请选择出题教师</option>
-            <option value="1001">欧阳丹丹</option>
-            <option value="1002">刘梅</option>
+        <select id="teacherInfo" style="width: 298px; height: 40px;">
+            <option value="none" selected="selected">请选择出题教师</option>
         </select>
+        <%--<select id="teacher">--%>
+        <%--<option value="0">请选择出题教师</option>--%>
+        <%--<option value="1001">欧阳丹丹</option>--%>
+        <%--<option value="1002">刘梅</option>--%>
+        <%--</select>--%>
         <div class="block">
             <div class="aline">
                 <span class="normal_one">名称</span>
@@ -46,14 +52,17 @@
             <div class="aline">
                 <div class="specail_line_four">
                     <span class="normal_one">考试开始的时间</span>
-                    <select id="begin_year">
-                        <option value="0">年</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
+                    <select id="beginyear" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">年</option>
                         <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
                     </select>
-                    <select id="begin_month">
-                        <option value="0">月</option>
+                    <%--<select id="begin_month">--%>
+                    <select id="beginmonth" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">月</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -67,8 +76,9 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select>
-                    <select id="begin_date">
-                        <option value="0">日</option>
+                    <%--<select id="begin_date">--%>
+                    <select id="begindate" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">日</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -101,8 +111,9 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select id="begin_hour">
-                        <option value="0">小时</option>
+                    <%--<select id="begin_hour" >--%>
+                    <select id="beginhour" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">小时</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -128,8 +139,9 @@
                         <option value="23">23</option>
                         <option value="24">24</option>
                     </select>
-                    <select id="begin_minute">
-                        <option value="0">分钟</option>
+                    <%--<select id="begin_minute">--%>
+                    <select id="beginminute" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">分钟</option>
                         <option value="00">00</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -144,14 +156,18 @@
             <div class="aline">
                 <div class="specail_line_four">
                     <span class="normal_one">考试结束的时间</span>
-                    <select id="end_year">
-                        <option value="0">年</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
+                    <select id="endyear" style="z-index: 11; width: 98px; height: 40px;">
+                        <%--<select id="end_year" >--%>
+                        <option value="null">年</option>
                         <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
                     </select>
-                    <select id="end_month">
-                        <option value="0">月</option>
+                    <%--<select id="end_month">--%>
+                    <select id="endmonth" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">月</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -165,8 +181,9 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select>
-                    <select id="end_date">
-                        <option value="0">日</option>
+                    <%--<select id="end_date">--%>
+                    <select id="enddate" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">日</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -199,8 +216,9 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select id="end_hour">
-                        <option value="0">小时</option>
+                    <%--<select id="end_hour">--%>
+                    <select id="endhour" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">小时</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -226,8 +244,9 @@
                         <option value="23">23</option>
                         <option value="24">24</option>
                     </select>
-                    <select id="end_minute">
-                        <option value="0">分钟</option>
+                    <%--<select id="end_minute">--%>
+                    <select id="endminute" style="z-index: 11; width: 98px; height: 40px;">
+                        <option value="null">分钟</option>
                         <option value="00">00</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -240,7 +259,7 @@
                 </div>
             </div>
             <div class="aline">
-                <button class="submit_button" id="submit">提交</button>
+                <button class="submit_button" id="submits">提交</button>
             </div>
         </div>
     </div>
@@ -249,8 +268,101 @@
 <script type="text/javascript">
     $(function () {
         //初始化考试科目
-        //initSubject();
+        initSubject();
         //$("#course").children("div.select-list").children("ul").append('<li data-value="none" class="" style="height: 34px;">语文</li>');
+        //初始化教师信息
+        initTeacherInfo()
+
+        $("#submits").click(function () {
+
+            if ($("#subject option:selected").text() == "" || $("#subject option:selected").text() == null) {
+                alert("请选择考试科目！");
+                $("#subject").focus();
+                return;
+            }
+            var subject = '"subject_ID":"' + $("#subject option:selected").val() + '"';
+
+            if ($("#teacherInfo option:selected").text() == "" || $("#teacherInfo option:selected").text() == null) {
+                alert("请选择出题老师！");
+                $("#teacherInfo").focus();
+                return;
+            }
+            var teacher = '"teacher":"' + $("#teacherInfo option:selected").val() + '"';
+
+            if ($("#exam_name").val() == '' || $("#exam_name").val() == null) {
+                alert("请填写考试名称");
+                return;
+            }
+            var exam_name = '"exam_name":"' + $("#exam_name").val() + '"';
+
+            if ($("#beginyear option:selected").text() == "" ||
+                $("#beginyear option:selected").text() == null ||
+                $("#beginmonth option:selected").text() == "" ||
+                $("#beginmonth option:selected").text() == null ||
+                $("#begindate option:selected").text() == "" ||
+                $("#begindate option:selected").text() == null ||
+                $("#beginhour option:selected").text() == "" ||
+                $("#beginhour option:selected").text() == null ||
+                $("#beginminute option:selected").text() == "" ||
+                $("#beginminute option:selected").text() == null) {
+                alert("请填写完整的考试开始时间！");
+                return;
+            }
+            var startDt = '"StartDt":"' +
+                $("#beginyear option:selected").val() +
+                '-' +
+                $("#beginmonth option:selected").val() +
+                '-' +
+                $("#begindate option:selected").val() +
+                ' ' +
+                $("#beginhour option:selected").val() +
+                ':' +
+                $("#beginminute option:selected").val() +
+                ':00"';
+
+            if ($("#endyear option:selected").text() == "" ||
+                $("#endyear option:selected").text() == null ||
+                $("#endmonth option:selected").text() == "" ||
+                $("#endmonth option:selected").text() == null ||
+                $("#enddate option:selected").text() == "" ||
+                $("#enddate option:selected").text() == null ||
+                $("#endhour option:selected").text() == "" ||
+                $("#endhour option:selected").text() == null ||
+                $("#endminute option:selected").text() == "" ||
+                $("#endminute option:selected").text() == null) {
+                alert("请填写完整的考试结束时间！");
+                return;
+            }
+            var endDt = '"EndDt":"' +
+                $("#endyear option:selected").val() +
+                '-' +
+                $("#endmonth option:selected").val() +
+                '-' +
+                $("#enddate option:selected").val() +
+                ' ' +
+                $("#endhour option:selected").val() +
+                ':' +
+                $("#endminute option:selected").val() +
+                ':00"';
+
+            data="{"+subject+","+teacher+","+exam_name+","+startDt+","+endDt+"}";
+            alert(data);
+
+            $.ajax({
+                url  : "${basePath}/ExamPlan/insertExamPlan.htm",
+                data : data,
+                type :"post",
+                success:function(data){
+                    if(data.status == '1'){
+                        alert(data.msg);
+                        window.location.reload();
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            });
+
+        });
     });
 
     //初始化考试科目
@@ -264,13 +376,34 @@
     //初始化考试科目回调函数
     function initSubjectCallBack(result) {
         if (result.status == 1) {
-            var data=result.data;
-            var options="";
+            var data = result.data;
+            var options = "";
             $(data).each(function () {
-                options+='<option value="'+$(this)[0].courseId+'">'+$(this)[0].courseName+'</option>';
+                options += '<option class="" style="height: 34px;" value="' + $(this)[0].courseId + '">' + $(this)[0].courseName + '</option>';
             });
-            $(options).appendTo($("#course"));
-            $("#course").val("").trigger("change");
+            $("#subject").append(options);
+            $("#subject").val("").trigger("change");
+        }
+    }
+
+    //初始化教师信息
+    function initTeacherInfo() {
+        var opt = {
+            url: "${basePath}/teacher/getTeacherInfoForSelect.htm",
+            callBack: initTeacherInfoCallBack
+        };
+        excuteOperation(opt);
+    }
+    //初始化教师信息回调函数
+    function initTeacherInfoCallBack(result) {
+        if (result.status == 1) {
+            var data = result.data;
+            var options = "";
+            $(data).each(function () {
+                options += '<option class="" style="height: 34px;" value="' + $(this)[0].teacherId + '">' + $(this)[0].teacherName + '</option>';
+            });
+            $("#teacherInfo").append(options);
+            $("#teacherInfo").val("").trigger("change");
         }
     }
 </script>

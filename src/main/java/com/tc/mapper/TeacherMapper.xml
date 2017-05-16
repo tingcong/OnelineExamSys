@@ -11,4 +11,13 @@
           tab_teacher
         WHERE ID=#{teacherId}
     </select>
+
+    <!--获取所有教师信息放入select-->
+    <select id="getTeacherInfoForSelect" resultType="com.tc.entity.Teacher">
+        SELECT
+          ID AS teacherId,
+          teacher_name AS teacherName
+        FROM
+          tab_teacher
+    </select>
 </mapper>

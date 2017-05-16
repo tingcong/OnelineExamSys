@@ -18,4 +18,8 @@ public interface ExamPlanMapper {
 
     //正在进行中的考试
     List<ExamPlan> getExamIng(Map map);
+
+    //增加考试安排
+    int insertExamPlan(Map map);
+
 }

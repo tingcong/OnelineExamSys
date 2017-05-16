@@ -11,15 +11,15 @@
     </resultMap>
     <select id="getExamBe" parameterType="java.util.Map" resultMap="examMap">
         SELECT
-            tep.ID,
-            tep.paper_ID,
-            tep.class_ID,
-            tep.start_datetime,
-            tep.end_datetime
+        tep.ID,
+        tep.paper_ID,
+        tep.class_ID,
+        tep.start_datetime,
+        tep.end_datetime
         from
- 				(tab_student ts
- 				LEFT JOIN tab_class tc ON ts.Class_NO=tc.ID)
- 				LEFT JOIN tab_exam_plan tep ON tc.ID=tep.class_ID
+        (tab_student ts
+        LEFT JOIN tab_class tc ON ts.Class_NO=tc.ID)
+        LEFT JOIN tab_exam_plan tep ON tc.ID=tep.class_ID
         WHERE 1=1
         <if test="nowDatetime != null and nowDatetime != ''">
             AND tep.start_datetime>#{nowDatetime}
@@ -28,4 +28,12 @@
             AND ts.Student_NO=#{studentNO}
         </if>
     </select>
+
+    <!--增加考试安排-->
+    <insert id="insertExamPlan" parameterType="java.util.Map">
+        INSERT  INTO tab_exam_plan
+        (exam_name,subject_ID,start_datetime,end_datetime,create_datetime,teacher_ID)
+        VALUES
+        (#{exam_name},#{subject_ID},#{StartDt},#{EndDt},#{createDt},#{teacher})
+    </insert>
 </mapper>
