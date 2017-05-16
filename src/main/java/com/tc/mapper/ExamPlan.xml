@@ -36,4 +36,18 @@
         VALUES
         (#{exam_name},#{subject_ID},#{StartDt},#{EndDt},#{createDt},#{teacher})
     </insert>
+
+    <!--查询所有待设置的考试-->
+    <select id="getAllExamNotSet" parameterType="java.lang.Integer" resultType="com.tc.entity.ExamPlan">
+        SELECT
+            ID AS id,
+            exam_name AS examName,
+            start_datetime AS examStartDatetime,
+            end_datetime AS examEndDatetime
+        FROM
+          tab_exam_plan
+        WHERE
+          total_scope is NULL
+        AND teacher_id=#{account}
+    </select>
 </mapper>

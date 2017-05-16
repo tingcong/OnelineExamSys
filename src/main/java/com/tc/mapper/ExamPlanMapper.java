@@ -22,4 +22,7 @@ public interface ExamPlanMapper {
     //增加考试安排
     int insertExamPlan(Map map);
 
+//    查询所有待设置的考试
+    List<ExamPlan> getAllExamNotSet(int account);
+
 }

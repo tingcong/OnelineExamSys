@@ -15,6 +15,16 @@ public class ExamPlan implements Serializable {
      */
     private Integer id;
 
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
+    }
+    private String examName;
+    private Integer subjectId;
+
     /**
      * 试卷编号
      */
@@ -34,6 +44,119 @@ public class ExamPlan implements Serializable {
      * 考试结束限时
      */
     private String examEndDatetime;
+
+    private String timeLimit;
+
+    private String createDatetime;
+
+    /**
+     * 出卷老师
+     */
+    private Integer teacherId;
+
+    private Integer singleNum;
+
+    private Integer singleScope;
+
+    private Integer doubleNum;
+
+    private Integer getDoubleNum;
+
+    private Integer judgmentNum;
+
+    private Integer judgmentScope;
+
+    private Integer essayNum;
+
+    private Integer essayScope;
+
+    public String getTimeLimit() {
+        return timeLimit;
+    }
+
+    public void setTimeLimit(String timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
+    public String getCreateDatetime() {
+        return createDatetime;
+    }
+
+    public void setCreateDatetime(String createDatetime) {
+        this.createDatetime = createDatetime;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public Integer getSingleNum() {
+        return singleNum;
+    }
+
+    public void setSingleNum(Integer singleNum) {
+        this.singleNum = singleNum;
+    }
+
+    public Integer getSingleScope() {
+        return singleScope;
+    }
+
+    public void setSingleScope(Integer singleScope) {
+        this.singleScope = singleScope;
+    }
+
+    public Integer getDoubleNum() {
+        return doubleNum;
+    }
+
+    public void setDoubleNum(Integer doubleNum) {
+        this.doubleNum = doubleNum;
+    }
+
+    public Integer getGetDoubleNum() {
+        return getDoubleNum;
+    }
+
+    public void setGetDoubleNum(Integer getDoubleNum) {
+        this.getDoubleNum = getDoubleNum;
+    }
+
+    public Integer getJudgmentNum() {
+        return judgmentNum;
+    }
+
+    public void setJudgmentNum(Integer judgmentNum) {
+        this.judgmentNum = judgmentNum;
+    }
+
+    public Integer getJudgmentScope() {
+        return judgmentScope;
+    }
+
+    public void setJudgmentScope(Integer judgmentScope) {
+        this.judgmentScope = judgmentScope;
+    }
+
+    public Integer getEssayNum() {
+        return essayNum;
+    }
+
+    public void setEssayNum(Integer essayNum) {
+        this.essayNum = essayNum;
+    }
+
+    public Integer getEssayScope() {
+        return essayScope;
+    }
+
+    public void setEssayScope(Integer essayScope) {
+        this.essayScope = essayScope;
+    }
 
     public ExamPlan() {
         super();
@@ -81,5 +204,13 @@ public class ExamPlan implements Serializable {
 
     public void setExamEndDatetime(String examEndDatetime) {
         this.examEndDatetime = examEndDatetime;
+    }
+
+    public String getExamName() {
+        return examName;
+    }
+
+    public void setExamName(String examName) {
+        this.examName = examName;
     }
 }
