@@ -97,13 +97,13 @@
             <div class="aline">
 					<span class="specail_line_two">
 						<span class="normal_two">请选择正确答案</span>
-						<input type="checkbox" class="check" id="multi_right_A" name="multi_answer"><span
+						<input type="checkbox" class="check" id="multi_right_A" name="multi_answer" value="1"><span
                             class="normal_two">A</span></input>
-                        <input type="checkbox" class="check" id="multi_right_B" name="multi_answer"><span
+                        <input type="checkbox" class="check" id="multi_right_B" name="multi_answer" value="2"><span
                             class="normal_two">B</span></input>
-                        <input type="checkbox" class="check" id="multi_right_C" name="multi_answer"><span
+                        <input type="checkbox" class="check" id="multi_right_C" name="multi_answer" value="3"><span
                             class="normal_two">C</span></input>
-                        <input type="checkbox" class="check" id="multi_right_D" name="multi_answer"><span
+                        <input type="checkbox" class="check" id="multi_right_D" name="multi_answer" value="4"><span
                             class="normal_two">D</span></input>
                         <select id="multi_level">
 							<option value="0">请选择该题难度</option>
@@ -196,10 +196,16 @@
         var subject='"subject":"'+$("#subject option:selected").val()+'"';
         //题型
         var questionType='"questionType":"'+$("#question_type").find("input[name=question_type]").val()+'"';
+        data=subject+","+questionType;
+        //w问答题
         if($("#question_type").find("input[name=question_type]").val()==4){
             var essay='"title":"'+$("#essay_title").val()+'","answer":"'+$("#essay_right").val()+'","level":"'+$("#essay_level").find("input[name='essay_level']").val()+'"' ;
+            data=data+","+essay;
+            //判断题
         }else if($("#question_type").find("input[name=question_type]").val()==3){
-            var judge='"title":"'+$("#judge_title").val()+'","answer":"'+$("#judge_right").find("input[name='judge_right']").val()+multi_answer_array
+            var judge='"title":"'+$("#judge_title").val()+'","answer":"'+$("#judge_right").find("input[name='judge_right']").val()+'","level":"'+$("#judge_level").find("input[name='judge_level']").val()+'"';
+            data=data+","+judge;
+            //多选题
         }else if($("#question_type").find("input[name=question_type]").val()==2){
             //获取答案
             var multi_answer_array=new Array();
@@ -207,9 +213,13 @@
                 multi_answer_array.push($(this).val());
             });
             var multi='"title":"'+$("#multi_title").val()+'","A":"'+$("#multi_A").val()+'","B":"'+$("#multi_B").val()+'","C":"'+$("#multi_C").val()+'","D":"'+$("#multi_D").val()+'","answer":"'+multi_answer_array.join("")+'","level":"'+$("#multi_level").find("input[name='multi_level']").val()+'"' ;
+            data=data+","+multi;
+            //单选题
         }else if($("#question_type").find("input[name=question_type]").val()==1){
-
+            var single='"title":"'+$("#single_title").val()+'","A":"'+$("#single_A").val()+'",B":"'+$("#single_B").val()+'",C":"'+$("#single_C").val()+'",D":"'+$("#single_D").val()+'","answer":"'+$("#single_right").find("input[name='single_right']").val()+'","level":"'+$("#single_level").find("input[name='single_level']").val()+'"' ;
+            data=data+","+single;
         }
+        alert(data);
     }
 </script>
 </html>
