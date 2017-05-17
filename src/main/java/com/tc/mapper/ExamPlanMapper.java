@@ -25,4 +25,10 @@ public interface ExamPlanMapper {
 //    查询所有待设置的考试
     List<ExamPlan> getAllExamNotSet(int account);
 
+    //根据考试编号获取考试安排信息
+    ExamPlan getExamInfoById(int param);
+
+//    添加考试题型和分数
+    int updatePaperById(Map map);
+
 }

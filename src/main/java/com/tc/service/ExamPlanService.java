@@ -23,4 +23,14 @@ public class ExamPlanService {
     public List<ExamPlan> getAllExamNotSet(int account){
         return examPlanMapper.getAllExamNotSet(account);
     }
+
+    /*  根据考试编号获取考试安排信息    */
+    public ExamPlan getExamInfoById(int param){
+        return examPlanMapper.getExamInfoById(param);
+    }
+
+    /*添加考试题型和分数*/
+    public int updatePaperById(Map map){
+        return examPlanMapper.updatePaperById(map);
+    }
 }

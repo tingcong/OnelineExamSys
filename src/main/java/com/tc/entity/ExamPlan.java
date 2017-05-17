@@ -69,6 +69,15 @@ public class ExamPlan implements Serializable {
     private Integer essayNum;
 
     private Integer essayScope;
+    private Integer totalScope;
+
+    public Integer getTotalScope() {
+        return totalScope;
+    }
+
+    public void setTotalScope(Integer totalScope) {
+        this.totalScope = totalScope;
+    }
 
     public String getTimeLimit() {
         return timeLimit;

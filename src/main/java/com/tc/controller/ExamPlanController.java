@@ -1,5 +1,6 @@
 package com.tc.controller;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import com.tc.constants.FieldConstants;
 import com.tc.constants.MsgConstants;
 import com.tc.constants.NumberConstants;
@@ -75,6 +76,59 @@ public class ExamPlanController {
             e.printStackTrace();
             resp.setStatus(NumberConstants.STATUS_ERROR);
             resp.setData(MsgConstants.SYSTEM_ERROR);
+        }
+        return resp;
+    }
+
+    @RequestMapping("getExamInfoById")
+    @ResponseBody
+    public Resp getExamInfoById(HttpServletRequest request,HttpServletResponse response){
+        Resp resp=new Resp();
+        try {
+            ExamPlan examPlan=examPlanService.getExamInfoById(3);
+            if(examPlan== null){
+                examPlan=new ExamPlan();
+            }
+            resp.setStatus(NumberConstants.STATUS_OK);
+            resp.setData(examPlan);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.setStatus(NumberConstants.STATUS_ERROR);
+            resp.setMsg(MsgConstants.SYSTEM_ERROR);
+        }
+        return resp;
+    }
+
+    /**
+     * 添加考试题型和分数
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("updatePaperById")
+    @ResponseBody
+    public Resp updatePaperById(HttpServletRequest request,HttpServletResponse response){
+        Resp resp=new Resp();
+        String param="";
+        try {
+            Enumeration enumeration= request.getParameterNames();
+            while (enumeration.hasMoreElements()){
+                param=(String)enumeration.nextElement();
+            }
+            System.out.println(param);
+            Map map=JSONObject.fromObject(param);
+            int flag=examPlanService.updatePaperById(map);
+            if(flag==0){
+                resp.setStatus(NumberConstants.STATUS_ERROR);
+                resp.setMsg(MsgConstants.EXCUTE_ERROR);
+                return resp;
+            }
+            resp.setMsg(MsgConstants.EXCUTE_SUCCESS);
+            resp.setStatus(NumberConstants.STATUS_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.setStatus(NumberConstants.STATUS_ERROR);
+            resp.setMsg(MsgConstants.SYSTEM_ERROR);
         }
         return resp;
     }

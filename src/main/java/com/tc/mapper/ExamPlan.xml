@@ -50,4 +50,49 @@
           total_scope is NULL
         AND teacher_id=#{account}
     </select>
+
+    <!--根据考试编号获取考试安排信息-->
+    <select id="getExamInfoById" resultType="com.tc.entity.ExamPlan" parameterType="java.lang.Integer">
+        SELECT
+            ID AS id,
+            exam_name AS examName,
+            subject_ID AS  subjectId,
+            paper_ID AS paperId,
+            class_ID AS classId,
+            start_datetime AS examStartDatetime,
+            end_datetime AS examEndDatetime,
+            time_limit AS timeLimit,
+            create_datetime AS createDatetime,
+            teacher_ID AS teacherId,
+            single_choice_num AS singleNum,
+            single_choice_scope AS singleScope,
+            multiple_choice_num AS doubleNum,
+            multiple_choice_scope AS getDoubleNum,
+            judgment_num AS judgmentNum,
+            judgment_scope AS judgmentScope,
+            essay_num AS essayNum,
+            essay_scope AS essayScope,
+            total_scope AS totalScope
+        FROM
+          tab_exam_plan
+        WHERE
+          id=#{param}
+    </select>
+
+    <!--添加考试题型和分数-->
+    <update id="updatePaperById" parameterType="java.util.Map" >
+        UPDATE tab_exam_plan
+        SET
+          single_choice_num=#{singleNum},
+          single_choice_scope=#{singleScope},
+          multiple_choice_num=#{multiNum},
+          multiple_choice_scope=#{multiScope},
+          judgment_num=#{judgmentNum},
+          judgment_scope=#{judgmentScope},
+          essay_num=#{essayNum},
+          essay_scope=#{essayScope},
+          total_scope=#{totalScope}
+        WHERE
+          id=#{id}
+    </update>
 </mapper>
