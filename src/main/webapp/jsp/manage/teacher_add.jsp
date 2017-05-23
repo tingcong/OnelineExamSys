@@ -200,11 +200,11 @@
         //w问答题
         if($("#question_type").find("input[name=question_type]").val()==4){
             var essay='"title":"'+$("#essay_title").val()+'","answer":"'+$("#essay_right").val()+'","level":"'+$("#essay_level").find("input[name='essay_level']").val()+'"' ;
-            data=data+","+essay;
+            data='{'+data+","+essay+'}';
             //判断题
         }else if($("#question_type").find("input[name=question_type]").val()==3){
             var judge='"title":"'+$("#judge_title").val()+'","answer":"'+$("#judge_right").find("input[name='judge_right']").val()+'","level":"'+$("#judge_level").find("input[name='judge_level']").val()+'"';
-            data=data+","+judge;
+            data='{'+data+","+judge+'}';
             //多选题
         }else if($("#question_type").find("input[name=question_type]").val()==2){
             //获取答案
@@ -213,13 +213,21 @@
                 multi_answer_array.push($(this).val());
             });
             var multi='"title":"'+$("#multi_title").val()+'","A":"'+$("#multi_A").val()+'","B":"'+$("#multi_B").val()+'","C":"'+$("#multi_C").val()+'","D":"'+$("#multi_D").val()+'","answer":"'+multi_answer_array.join("")+'","level":"'+$("#multi_level").find("input[name='multi_level']").val()+'"' ;
-            data=data+","+multi;
+            data='{'+data+","+multi+'}';
             //单选题
         }else if($("#question_type").find("input[name=question_type]").val()==1){
-            var single='"title":"'+$("#single_title").val()+'","A":"'+$("#single_A").val()+'",B":"'+$("#single_B").val()+'",C":"'+$("#single_C").val()+'",D":"'+$("#single_D").val()+'","answer":"'+$("#single_right").find("input[name='single_right']").val()+'","level":"'+$("#single_level").find("input[name='single_level']").val()+'"' ;
-            data=data+","+single;
+            var single='"title":"'+$("#single_title").val()+'","A":"'+$("#single_A").val()+'","B":"'+$("#single_B").val()+'","C":"'+$("#single_C").val()+'","D":"'+$("#single_D").val()+'","answer":"'+$("#single_right").find("input[name='single_right']").val()+'","level":"'+$("#single_level").find("input[name='single_level']").val()+'"' ;
+            data='{'+data+","+single+'}';
         }
         alert(data);
+        $.ajax({
+            url:"${basePath}/teacher/addQuestion.htm",
+            data:data,
+            dataType:"json",
+            success:function (result) {
+
+            }
+        })
     }
 </script>
 </html>

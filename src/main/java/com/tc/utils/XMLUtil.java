@@ -1,13 +1,16 @@
 package com.tc.utils;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
+import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
+import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+import org.junit.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * 操作XML文件的工具类
@@ -86,7 +89,42 @@ public class XMLUtil {
         writer.close();
 
     }
+    public static String getProjectRealPath(){
+        return System.getProperty("user.dir");
+    }
 
+    /**
+     * 更新题库
+     * @param map 需要跟新的数据
+     */
+    public static void updatePaper(String path,Map map) throws DocumentException, IOException {
+        //String path="/src/main/webapp/file/questionLibrary/"+map.get("subject")+"/"+map.get("questionType")+"-"+map.get("level")+".xml";
+
+        //String path="C:\\Users\\TingCong\\IdeaProjects\\OnelineExamSysamSys\\src\\main\\webapp\\file\\questionLibrary\\1\\1-c.xml";
+        SAXReader reader = new SAXReader();
+        //读取题库文件
+        Document doc=reader.read(path);
+        //        System.out.println(doc);
+        //读取根节点的id属性获取题数
+        Integer id=Integer.parseInt(doc.getRootElement().element("questions").attributeValue("id"))+1;
+        //增加question节点
+        Element questionNode=doc.addElement("question");
+        //为question节点增加ID属性，即题号
+        questionNode.addAttribute("id",String.valueOf(id));
+        //增加title节点
+        Element titleNode=questionNode.addElement("title");
+        titleNode.setText(map.get("title").toString());
+        //增加answer节点
+        Element answerNode=questionNode.addElement("answer");
+        answerNode.setText(map.get("answer").toString());
+        //将修改过后的对象写出到预原题库文件
+        FileOutputStream outputStream=new FileOutputStream(path);
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("utf-8");
+        XMLWriter writer = new XMLWriter(outputStream,format);
+        writer.write(doc);
+        writer.close();
+    }
     public static void main(String[] args) throws Exception {
         String path = "src/main/webapp/file/paperModel/";
         String fileName = "江西师大毕业考试";
