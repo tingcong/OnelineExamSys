@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<questions>
-    <question id="">
-        <title>动物园有熊猫4只，有猴子是熊猫的3倍。问一共有熊猫和猴子多少只？</title>
-        <choices>
-            <A>24</A>
-            <B>25</B>
-            <C>18</C>
-            <D>16</D>
-        </choices>
-        <Answer>A</Answer>
-    </question>
+<?xml version="1.0" encoding="utf-8"?>
+
+<questions count="2"> 
+  <question id="1"> 
+    <title>请描述一下你的感情经历？</title>  
+    <answer>围绕感情描述你的</answer> 
+  </question>  
+  <question id="2">
+    <title>一加一等于几</title>
+    <answer>2</answer>
+  </question>
 </questions>

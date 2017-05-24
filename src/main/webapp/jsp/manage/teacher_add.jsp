@@ -223,6 +223,7 @@
         $.ajax({
             url:"${basePath}/teacher/addQuestion.htm",
             data:data,
+            type:"POST",
             dataType:"json",
             success:function (result) {
 

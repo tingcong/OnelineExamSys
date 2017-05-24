@@ -1,7 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<questions count="0">
-    <question id="">
-        <title>请描述一下你的感情经历？</title>
-        <answer>围绕感情描述你的</answer>
-    </question>
+<?xml version="1.0" encoding="utf-8"?>
+
+<questions count="4"> 
+  <question id="1"> 
+    <title>动物园有熊猫4只，有猴子是熊猫的3倍。问一共有熊猫和猴子多少只？</title>  
+    <choices> 
+      <A>24</A>  
+      <B>25</B>  
+      <C>18</C>  
+      <D>16</D> 
+    </choices>  
+    <answer>A</answer> 
+  </question>  
+  <question id="3"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="4">
+    <title>鲁迅原名叫什么</title>
+    <choices>
+      <A>周树人</A>
+      <B>周作人</B>
+      <C>周周</C>
+      <D>人人</D>
+    </choices>
+    <answer>1</answer>
+  </question>
 </questions>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<questions>
-    <question id="">
+<questions count="1">
+    <question id="1">
         <title>动物园有熊猫4只，有猴子是熊猫的3倍。问一共有熊猫和猴子多少只？</title>
-        <Answer>T</Answer>
+        <answer>T</answer>
     </question>
 </questions>

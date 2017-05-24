@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -35,7 +36,7 @@ public class TeacherController {
 
     @RequestMapping("getTeacherInfoForSelect")
     @ResponseBody
-    public Resp getTeacherInfoForSelect(HttpServletRequest request, HttpServletResponse response){
+    public Resp getTeacherInfoForSelect(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Resp resp=new Resp();
 
         try {
@@ -56,6 +57,8 @@ public class TeacherController {
     @RequestMapping("addQuestion")
     @ResponseBody
     public Resp addQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //response.setCharacterEncoding("utf-8");
+        //response.setContentType("text/html;charset=utf-8");
         String param="";
         Resp resp=new Resp();
         Enumeration enumeration=request.getParameterNames();
@@ -65,12 +68,12 @@ public class TeacherController {
         Map map= JSONObject.fromObject(param);
         String projectRealPath=request.getSession().getServletContext().getRealPath("");
         String projectRootRealPath=projectRealPath.substring(0,projectRealPath.indexOf("target"));
-        System.out.println("1:"+projectRootRealPath);
+        System.out.println(map.get("answer").toString());
         /*文件路径*/
         String filePath=projectRootRealPath+"\\src\\main\\webapp\\file\\questionLibrary\\"+map.get("subject")+"\\"+map.get("questionType")+"-"+map.get("level")+".xml";
         try {
             XMLUtil.updatePaper(filePath,map);
-        } catch (DocumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resp;
