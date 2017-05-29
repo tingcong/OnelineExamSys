@@ -346,7 +346,7 @@
                 ':00"';
 
             data="{"+subject+","+teacher+","+exam_name+","+startDt+","+endDt+"}";
-            alert(data);
+//            alert(data);
 
             $.ajax({
                 url  : "${basePath}/ExamPlan/insertExamPlan.htm",

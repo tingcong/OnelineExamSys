@@ -6,10 +6,11 @@
         <id property="id" column="ID"></id>
         <result property="paperId" column="paper_ID"></result>
         <result property="classId" javaType="String" column="class_ID" jdbcType="VARCHAR"></result>
+        <result property="examName" javaType="String" column="exam_name" jdbcType="VARCHAR"></result>
         <result property="examStartDatetime" javaType="String" column="start_datetime" jdbcType="DATE"></result>
         <result property="examEndDatetime" javaType="String" column="end_datetime" jdbcType="DATE"/>
     </resultMap>
-    <select id="getExamBe" parameterType="java.util.Map" resultMap="examMap">
+    <!--<select id="getExamBe" parameterType="java.util.Map" resultMap="examMap">
         SELECT
         tep.ID,
         tep.paper_ID,
@@ -27,6 +28,34 @@
         <if test="studentNO != null and studentNO != ''">
             AND ts.Student_NO=#{studentNO}
         </if>
+    </select>-->
+    <!--获得即将进行的考试信息-->
+    <select id="getExamBe" parameterType="java.util.Map" resultMap="examMap">
+        SELECT
+            ep.ID AS id,
+            ep.start_datetime AS examStartDatetime,
+            ep.end_datetime AS examEndDatetime,
+            ep.exam_name AS examName
+        FROM tab_exam_plan ep
+        LEFT JOIN tab_class_teacher_subject cts on (ep.teacher_ID=cts.teacher_ID AND ep.subject_ID=cts.subject_ID)
+        LEFT JOIN tab_student stu ON stu.Class_NO=cts.class_ID
+        WHERE stu.ID=#{studentId}
+        AND ep.start_datetime>#{nowDatetime}
+    </select>
+
+    <!--获得正在进行的考试信息-->
+    <select id="getExamIng" parameterType="java.util.Map" resultMap="examMap">
+        SELECT
+            ep.ID AS id,
+            ep.start_datetime AS examStartDatetime,
+            ep.end_datetime AS examEndDatetime,
+            ep.exam_name AS examName
+        FROM tab_exam_plan ep
+        LEFT JOIN tab_class_teacher_subject cts on (ep.teacher_ID=cts.teacher_ID AND ep.subject_ID=cts.subject_ID)
+        LEFT JOIN tab_student stu ON stu.Class_NO=cts.class_ID
+        WHERE stu.ID=#{studentId}
+        AND #{nowDatetime}>ep.start_datetime
+        AND ep.end_datetime>#{nowDatetime}
     </select>
 
     <!--增加考试安排-->
@@ -80,7 +109,7 @@
     </select>
 
     <!--添加考试题型和分数-->
-    <update id="updatePaperById" parameterType="java.util.Map" >
+    <update id="updatePaperById" parameterType="java.util.Map">
         UPDATE tab_exam_plan
         SET
           single_choice_num=#{singleNum},

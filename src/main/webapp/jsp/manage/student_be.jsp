@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
-
 	<link href="css/manage.css" type="text/css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/jsp/manage/css/manage.css" type="text/css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/jsp/manage/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/jsp/manage/js/manage.js"></script>
 </head>
 <body>
 	<div class="Wrapbody">
@@ -32,20 +33,39 @@
 		</div>
 	</div>
 <script type="text/javascript">
+	<%--$(function () {--%>
+		<%--$.get("${pageContext.request.contextPath}/student/getExamBe.htm",function (data) {--%>
+			<%--var list=eval(data);--%>
+			<%--for(i=0;i<list.length;i++){--%>
+                <%--$("#resultList").append(--%>
+                    <%--"<li><div class='Mconright'>" +--%>
+					<%--"<h3 class='clearfix'>"+"2015上学年智商期末测试"+"</h3>"+--%>
+                    <%--"<p>试卷编号:"+list[i].paperId+"</p>"+--%>
+                    <%--"<p>考试限时:"+(list[i].examEndDatetime-list[i].examStartDatetime)+"</p>"+--%>
+                    <%--"<p>开始时间:"+list[i].examStartDatetime+"</p>"+--%>
+                    <%--"<p>结束时间:"+list[i].examEndDatetime+"</p>"+--%>
+                    <%--"</li>");--%>
+			<%--}--%>
+        <%--});--%>
+    <%--})--%>
 	$(function () {
-		$.get("${pageContext.request.contextPath}/student/getExamBe.htm",function (data) {
-			var list=eval(data);
-			for(i=0;i<list.length;i++){
-                $("#resultList").append(
-                    "<li><div class='Mconright'>" +
-					"<h3 class='clearfix'>"+"2015上学年智商期末测试"+"</h3>"+
-                    "<p>试卷编号:"+list[i].paperId+"</p>"+
-                    "<p>考试限时:"+(list[i].examEndDatetime-list[i].examStartDatetime)+"</p>"+
-                    "<p>开始时间:"+list[i].examStartDatetime+"</p>"+
-                    "<p>结束时间:"+list[i].examEndDatetime+"</p>"+
-                    "</li>");
-			}
-        });
+		$.ajax({
+			url:"${pageContext.request.contextPath}/student/getExamBe.htm",
+            type:"post",
+			success:function (result) {
+				var data=result.data;
+				var options="";
+				$(data).each(function () {
+					options+='<li>' +
+								'<div class="Mconright">' +
+									'<h3 class="clearfix">'+$(this)[0].examName+'</h3>' +
+									'<p>开始时间：'+$(this)[0].examStartDatetime+'</p>'+
+									'<p>结束时间：'+$(this)[0].examEndDatetime+'</p>';
+                });
+				$("#resultList").append(options);
+                $("#resultList").val("").trigger("change")
+            }
+		});
     })
 </script>
 </body>

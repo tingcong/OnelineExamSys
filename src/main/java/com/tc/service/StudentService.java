@@ -24,4 +24,11 @@ public class StudentService {
         map.put("nowDatetime", DatetimeUtil.getLocalDatetime());
         return examPlanMapper.getExamBe(map);
     }
+
+    public List<ExamPlan> getExamIng(Integer studentId){
+        Map map=new HashedMap();
+        map.put("studentId",studentId);
+        map.put("nowDatetime", DatetimeUtil.getLocalDatetime());
+        return examPlanMapper.getExamIng(map);
+    }
 }
