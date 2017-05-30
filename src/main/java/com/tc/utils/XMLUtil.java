@@ -6,12 +6,12 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.junit.Test;
 
+import javax.print.Doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 操作XML文件的工具类
@@ -97,27 +97,28 @@ public class XMLUtil {
 
     /**
      * 更新单选题
-     * @param path  文件路径
-     * @param map   题目
+     *
+     * @param path 文件路径
+     * @param map  题目
      * @throws Exception
      */
-    public static void addSimple(String path, Map map) throws Exception{
-        SAXReader reader=new SAXReader();
+    public static void addSimple(String path, Map map) throws Exception {
+        SAXReader reader = new SAXReader();
         //读取题库文件
-        Document doc=reader.read(path);
+        Document doc = reader.read(path);
         //获取根节点
         Element rootNode = doc.getRootElement();
         //读取根节点的id属性获取题数
         Integer id = Integer.parseInt(doc.getRootElement().attributeValue("count")) + 1;
         //增加子节点
-        Element questionNode=rootNode.addElement("question");
+        Element questionNode = rootNode.addElement("question");
         //增加属性
-        questionNode.addAttribute("id",String.valueOf(id));
+        questionNode.addAttribute("id", String.valueOf(id));
 
-        Element titleNode=questionNode.addElement("title");
+        Element titleNode = questionNode.addElement("title");
         titleNode.setText(map.get("title").toString());
 
-        Element choicesNode=questionNode.addElement("choices");
+        Element choicesNode = questionNode.addElement("choices");
         choicesNode.addElement("A").setText(map.get("A").toString());
         choicesNode.addElement("B").setText(map.get("B").toString());
         choicesNode.addElement("C").setText(map.get("C").toString());
@@ -139,27 +140,28 @@ public class XMLUtil {
 
     /**
      * 跟新多选题
+     *
      * @param path
      * @param map
      * @throws Exception
      */
-    public static void addMultip(String path, Map map) throws Exception{
-        SAXReader reader=new SAXReader();
+    public static void addMultip(String path, Map map) throws Exception {
+        SAXReader reader = new SAXReader();
         //读取题库文件
-        Document doc=reader.read(path);
+        Document doc = reader.read(path);
         //获取根节点
         Element rootNode = doc.getRootElement();
         //读取根节点的id属性获取题数
         Integer id = Integer.parseInt(doc.getRootElement().attributeValue("count")) + 1;
         //增加子节点
-        Element questionNode=rootNode.addElement("question");
+        Element questionNode = rootNode.addElement("question");
         //增加属性
-        questionNode.addAttribute("id",String.valueOf(id));
+        questionNode.addAttribute("id", String.valueOf(id));
 
-        Element titleNode=questionNode.addElement("title");
+        Element titleNode = questionNode.addElement("title");
         titleNode.setText(map.get("title").toString());
 
-        Element choicesNode=questionNode.addElement("choices");
+        Element choicesNode = questionNode.addElement("choices");
         choicesNode.addElement("A").setText(map.get("A").toString());
         choicesNode.addElement("B").setText(map.get("B").toString());
         choicesNode.addElement("C").setText(map.get("C").toString());
@@ -181,24 +183,25 @@ public class XMLUtil {
 
     /**
      * 跟新判断题
+     *
      * @param path
      * @param map
      * @throws Exception
      */
-    public static void addJudge(String path, Map map) throws Exception{
-        SAXReader reader=new SAXReader();
+    public static void addJudge(String path, Map map) throws Exception {
+        SAXReader reader = new SAXReader();
         //读取题库文件
-        Document doc=reader.read(path);
+        Document doc = reader.read(path);
         //获取根节点
         Element rootNode = doc.getRootElement();
         //读取根节点的id属性获取题数
         Integer id = Integer.parseInt(doc.getRootElement().attributeValue("count")) + 1;
         //增加子节点
-        Element questionNode=rootNode.addElement("question");
+        Element questionNode = rootNode.addElement("question");
         //增加属性
-        questionNode.addAttribute("id",String.valueOf(id));
+        questionNode.addAttribute("id", String.valueOf(id));
 
-        Element titleNode=questionNode.addElement("title");
+        Element titleNode = questionNode.addElement("title");
         titleNode.setText(map.get("title").toString());
 
         questionNode.addElement("answer").setText(map.get("answer").toString());
@@ -264,22 +267,170 @@ public class XMLUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String path = "src/main/webapp/file/paperModel/";
+/*        String path = "src/main/webapp/file/paperModel/";
         String fileName = "江西师大毕业考试";
 //        createPaperModel(path+fileName+".xml");
         createPaperResultModel(path + fileName + "1310400114" + ".xml");
-        System.out.println(path + fileName + ".xml");
+        System.out.println(path + fileName + ".xml");*/
+        Random random = new Random(10);
+        Set<Integer> randomSet = new HashSet<>();
+        while (randomSet.size() < 5) {
+            int s = random.nextInt(10);
+            randomSet.add(s);
+            System.out.println(randomSet.size());
+        }
+        Iterator<Integer> it = randomSet.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
     }
 
     public static void updatePaper(String path, Map map) throws Exception {
-        if(Integer.parseInt(map.get("questionType").toString())==1){
-            addSimple(path,map);
-        }else if(Integer.parseInt(map.get("questionType").toString())==2){
-            addMultip(path,map);
-        }else if(Integer.parseInt(map.get("questionType").toString())==3){
-            addJudge(path,map);
-        }else if(Integer.parseInt(map.get("questionType").toString())==4){
-            addEssay(path,map);
+        if (Integer.parseInt(map.get("questionType").toString()) == 1) {
+            addSimple(path, map);
+        } else if (Integer.parseInt(map.get("questionType").toString()) == 2) {
+            addMultip(path, map);
+        } else if (Integer.parseInt(map.get("questionType").toString()) == 3) {
+            addJudge(path, map);
+        } else if (Integer.parseInt(map.get("questionType").toString()) == 4) {
+            addEssay(path, map);
         }
     }
+
+    /**
+     * 获取各个题型的总数
+     *
+     * @return
+     */
+    public static Integer getTotal(String path) throws Exception {
+        SAXReader reader = new SAXReader();
+        //读取题库文件
+        Document doc = reader.read(path);
+        Element rootNode = doc.getRootElement();
+//        String count=rootNode.attribute("count").getText();
+//        System.out.println("count"+count);
+        return Integer.parseInt(rootNode.attribute("count").getText());
+    }
+
+    /**
+     * 获取多个随机数
+     *
+     * @param max
+     * @param n
+     * @return
+     */
+    public static Set<Integer> getRandom(int max, int n) {
+        Random random = new Random(max);
+        Set<Integer> randomSet = new HashSet<>();
+        while (randomSet.size() < n) {
+            int s = random.nextInt(max);
+            if (s != 0) {
+                randomSet.add(s);
+            }
+            System.out.println(randomSet.size());
+        }
+        return randomSet;
+    }
+
+    /**
+     * 根据题号获取x选择题题目信息
+     *
+     * @param questionNum
+     * @return
+     */
+    public static Map<String, Object> getSingleDetail(int questionNum, String path) throws Exception {
+        SAXReader reader = new SAXReader();
+        Document doc = reader.read(path);
+        Element rootNode = doc.getRootElement();
+        //获取根节点下的所有子节点
+        List<Element> elements = rootNode.elements();
+        Map<String, Object> singleDetailMap = new HashMap<>();
+        for (Element ele : elements) {
+            Element element = ele;
+//            System.out.println(ele.attribute("id").getText() + " : " + ele.attribute("id").getText().getClass() + "  " + s.getClass());
+            if (ele.attribute("id").getText().equals(String.valueOf(questionNum))) {
+                //文件路径
+                singleDetailMap.put("filePath", path);
+                //题号
+                singleDetailMap.put("questionId", ele.attribute("id").getText());
+                //问题
+                singleDetailMap.put("title", ele.element("title").getText());
+                //选项
+                singleDetailMap.put("A", ele.element("choices").element("A").getText());
+                singleDetailMap.put("B", ele.element("choices").element("B").getText());
+                singleDetailMap.put("C", ele.element("choices").element("C").getText());
+                singleDetailMap.put("D", ele.element("choices").element("D").getText());
+                //答案
+                singleDetailMap.put("answer", ele.element("answer").getText());
+            }
+        }
+        return singleDetailMap;
+    }
+
+    /**
+     * 获取判断题信息
+     *
+     * @param questionNum
+     * @param path
+     * @return
+     * @throws Exception
+     */
+    public static Map<String, Object> getJudgmenDetail(int questionNum, String path) throws Exception {
+        SAXReader reader = new SAXReader();
+        Document doc = reader.read(path);
+        Element rootNode = doc.getRootElement();
+        //获取根节点下的所有子节点
+        List<Element> elements = rootNode.elements();
+        Map<String, Object> singleDetailMap = new HashMap<>();
+        for (Element ele : elements) {
+            Element element = ele;
+//            System.out.println(ele.attribute("id").getText() + " : " + ele.attribute("id").getText().getClass() + "  " + s.getClass());
+            if (ele.attribute("id").getText().equals(String.valueOf(questionNum))) {
+                //文件路径
+                singleDetailMap.put("filePath", path);
+                //题号
+                singleDetailMap.put("questionId", ele.attribute("id").getText());
+                //问题
+                singleDetailMap.put("title", ele.element("title").getText());
+                //答案
+                singleDetailMap.put("answer", ele.element("answer").getText());
+                singleDetailMap.put("type","Judgment");
+            }
+        }
+        return singleDetailMap;
+    }
+
+    /**
+     * 获取问答题信息
+     * @param questionNum
+     * @param path
+     * @return
+     * @throws Exception
+     */
+    public static Map<String, Object> getEssayDetail(int questionNum, String path) throws Exception {
+        SAXReader reader = new SAXReader();
+        Document doc = reader.read(path);
+        Element rootNode = doc.getRootElement();
+        //获取根节点下的所有子节点
+        List<Element> elements = rootNode.elements();
+        Map<String, Object> singleDetailMap = new HashMap<>();
+        for (Element ele : elements) {
+            Element element = ele;
+//            System.out.println(ele.attribute("id").getText() + " : " + ele.attribute("id").getText().getClass() + "  " + s.getClass());
+            if (ele.attribute("id").getText().equals(String.valueOf(questionNum))) {
+                //文件路径
+                singleDetailMap.put("filePath", path);
+                //题号
+                singleDetailMap.put("questionId", ele.attribute("id").getText());
+                //问题
+                singleDetailMap.put("title", ele.element("title").getText());
+                //答案
+                singleDetailMap.put("answer", ele.element("answer").getText());
+                singleDetailMap.put("type","Essay");
+            }
+        }
+        return singleDetailMap;
+    }
+
+
 }

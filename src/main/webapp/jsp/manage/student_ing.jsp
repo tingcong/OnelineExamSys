@@ -48,7 +48,7 @@
                 $(data).each(function () {
                     options+='<li>' +
                         '<div class="Mconright">' +
-                        '<a href="${pageContext.request.contextPath}/jsp/manage/exam.jsp?" target="_top">'+
+                        '<a href="${pageContext.request.contextPath}/jsp/manage/exam.jsp?examId='+$(this)[0].id+'" target="_top">'+
                         '<h3 class="clearfix">'+$(this)[0].examName+'</h3>' +
                         '<p>开始时间：'+$(this)[0].examStartDatetime+'</p>'+
                         '<p>结束时间：'+$(this)[0].examEndDatetime+'</p>';

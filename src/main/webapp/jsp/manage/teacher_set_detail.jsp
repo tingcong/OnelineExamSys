@@ -114,7 +114,6 @@
 </body>
 <script type="text/javascript">
     $(function () {
-
         initPage();
 
         $("#setsubmit").click(function () {
@@ -135,7 +134,7 @@
 
             var data='{"id":"'+examid+'",'+single+','+multi+','+judgment+','+essay+','+total+'}';
 
-            alert(data);
+//            alert(data);
             $.ajax({
                 url:"${basePath}/ExamPlan/updatePaperById.htm",
                 async:false,
@@ -150,10 +149,12 @@
         });
     });
     function initPage() {
+//        alert(examid);
+
         $.ajax({
             url: "${basePath}/ExamPlan/getExamInfoById.htm",
             async: false,
-            data: {param: examid},
+            data: {"examid": examid},
             type: "POST",
             success:function (result) {
                 var data=result.data;

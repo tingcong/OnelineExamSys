@@ -82,10 +82,10 @@ public class ExamPlanController {
 
     @RequestMapping("getExamInfoById")
     @ResponseBody
-    public Resp getExamInfoById(HttpServletRequest request,HttpServletResponse response){
+    public Resp getExamInfoById(HttpServletRequest request,HttpServletResponse response ,String examid){
         Resp resp=new Resp();
         try {
-            ExamPlan examPlan=examPlanService.getExamInfoById(3);
+            ExamPlan examPlan=examPlanService.getExamInfoById(Integer.parseInt(examid));
             if(examPlan== null){
                 examPlan=new ExamPlan();
             }
@@ -124,6 +124,31 @@ public class ExamPlanController {
                 return resp;
             }
             resp.setMsg(MsgConstants.EXCUTE_SUCCESS);
+            resp.setStatus(NumberConstants.STATUS_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.setStatus(NumberConstants.STATUS_ERROR);
+            resp.setMsg(MsgConstants.SYSTEM_ERROR);
+        }
+        return resp;
+    }
+
+    /**
+     * 开始考试，获取试卷
+     * @param request
+     * @param response
+     * @param examId
+     * @return
+     */
+    @RequestMapping("getPaper")
+    @ResponseBody
+    public Resp getPaper(HttpServletRequest request,HttpServletResponse response ,String examId){
+        Resp resp=new Resp();
+        try {
+            String projectRealPath=request.getSession().getServletContext().getRealPath("");
+            String projectRootRealPath=projectRealPath.substring(0,projectRealPath.indexOf("target"));
+            String filePath=projectRootRealPath+"\\src\\main\\webapp\\file\\questionLibrary";
+            resp=examPlanService.getPaper(Integer.parseInt(examId),filePath);
             resp.setStatus(NumberConstants.STATUS_OK);
         } catch (Exception e) {
             e.printStackTrace();

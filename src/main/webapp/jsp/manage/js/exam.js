@@ -241,35 +241,37 @@ $(function() {
 			},
 		});
 	});
-	$('.alert_btn').on('click',function () {
-		if(fullscreen_time == 0){
-			interval_id = window.setInterval("showtime()",60000);
-		}
-		console.log(fullscreen_time);
-		$('.alert_msg').addClass('force_red');
-		if(fullscreen_time<2) {
-			$('.alert_msg').html('警告：请马上返回全屏模式!');
-			$('.alert_btn').html('返回全屏');
-		} else {
-			$.ajax({
-				method: 'GET',
-				url: '../handle/savePaper.jsp',
-				dateType: 'json',
-				data: {
-					type:"cheat",
-					examID:examID,
-					paperID:paperID,
-				},
-				success:function() {
-					$('.alert_msg').html('由于你无视警告，多次退出全屏模式，构成作弊，该场考试成绩为0！');
-					$('.alert_btn').hide();
-					$(".quit_btn").show();
-				},
-			});
-		}
-		requestFullScreen();
-		$(".alert_screen").hide();
-	});
+	// $('.alert_btn').on('click',function () {
+	// // $('#startButton').on('click',function () {
+	// 	alert("1");
+	// 	if(fullscreen_time == 0){
+	// 		interval_id = window.setInterval("showtime()",60000);
+	// 	}
+	// 	console.log(fullscreen_time);
+	// 	$('.alert_msg').addClass('force_red');
+	// 	if(fullscreen_time<2) {
+	// 		$('.alert_msg').html('警告：请马上返回全屏模式!');
+	// 		$('.alert_btn').html('返回全屏');
+	// 	} else {
+	// 		$.ajax({
+	// 			method: 'GET',
+	// 			url: '../handle/savePaper.jsp',
+	// 			dateType: 'json',
+	// 			data: {
+	// 				type:"cheat",
+	// 				examID:examID,
+	// 				paperID:paperID,
+	// 			},
+	// 			success:function() {
+	// 				$('.alert_msg').html('由于你无视警告，多次退出全屏模式，构成作弊，该场考试成绩为0！');
+	// 				$('.alert_btn').hide();
+	// 				$(".quit_btn").show();
+	// 			},
+	// 		});
+	// 	}
+	// 	requestFullScreen();
+	// 	$(".alert_screen").hide();
+	// });
 	$('#submit').on('click',function () {
 		$.ajax({
 			method: 'GET',

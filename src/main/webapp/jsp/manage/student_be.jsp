@@ -63,7 +63,7 @@
 									'<p>结束时间：'+$(this)[0].examEndDatetime+'</p>';
                 });
 				$("#resultList").append(options);
-                $("#resultList").val("").trigger("change")
+                $("#resultList").val("").trigger("change");
             }
 		});
     })
