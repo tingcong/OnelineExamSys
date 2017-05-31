@@ -107,20 +107,20 @@
             <div class="title" id="single_title">一、单项选择</div>
 
             <div class="content_box" id="single">
-                <select class="single_choice rightF">
-                    <option value="0">请选择正确答案</option>
-                    <option value="1">A</option>
-                    <option value="2">B</option>
-                    <option value="3">C</option>
-                    <option value="4">D</option>
-                </select>
-                <div class="content">能否对粉丝爱疯hiof你</div>
-                <div class="choice_box">
-                    <div class="content">A.范德萨发生的发生</div>
-                    <div class="content">B.第三方士大夫</div>
-                    <div class="content">C.辅导辅导辅导</div>
-                    <div class="content">D.佛挡杀佛斯蒂芬</div>
-                </div>
+                <%--<select class="single_choice rightF">--%>
+                <%--<option value="0">请选择正确答案</option>--%>
+                <%--<option value="1">A</option>--%>
+                <%--<option value="2">B</option>--%>
+                <%--<option value="3">C</option>--%>
+                <%--<option value="4">D</option>--%>
+                <%--</select>--%>
+                <%--<div class="content">能否对粉丝爱疯hiof你</div>--%>
+                <%--<div class="choice_box">--%>
+                <%--<div class="content">A.范德萨发生的发生</div>--%>
+                <%--<div class="content">B.第三方士大夫</div>--%>
+                <%--<div class="content">C.辅导辅导辅导</div>--%>
+                <%--<div class="content">D.佛挡杀佛斯蒂芬</div>--%>
+                <%--</div>--%>
             </div>
 
         </div>
@@ -133,18 +133,18 @@
 
                 </div>
                 <div class="choice_box">
-                    <div class="content">
-                        <input type="checkbox" class="check"><span>A.</span></input>
-                    </div>
-                    <div class="content">
-                        <input type="checkbox" class="check"><span>B.</span></input>
-                    </div>
-                    <div class="content">
-                        <input type="checkbox" class="check"><span>C.</span></input>
-                    </div>
-                    <div class="content">
-                        <input type="checkbox" class="check" id=><span>D.</span></input>
-                    </div>
+                    <%--<div class="content">--%>
+                    <%--<input type="checkbox" class="check"><span>A.</span></input>--%>
+                    <%--</div>--%>
+                    <%--<div class="content">--%>
+                    <%--<input type="checkbox" class="check"><span>B.</span></input>--%>
+                    <%--</div>--%>
+                    <%--<div class="content">--%>
+                    <%--<input type="checkbox" class="check"><span>C.</span></input>--%>
+                    <%--</div>--%>
+                    <%--<div class="content">--%>
+                    <%--<input type="checkbox" class="check" id=><span>D.</span></input>--%>
+                    <%--</div>--%>
                 </div>
             </div>
 
@@ -191,6 +191,12 @@
 </div>
 </body>
 <script type="text/javascript">
+    //    题号初始化
+    var singleNo = 1;
+    var doubleNo = 1;
+    var judgeNo = 1;
+    var essayNo = 1;
+
     $(function () {
         //初始化样式
         $('.single_answer').selectlist({
@@ -218,10 +224,6 @@
             type: "POST",
             success: function (result) {
                 var data = result.data;
-                var singleNo = 1;
-                var doubleNo = 1;
-                var judgeNo = 1;
-                var essayNo = 1;
                 $(data).each(function () {
 
                     //单选题
@@ -229,7 +231,7 @@
                         // alert($(this)[0].A);
 
                         var options = "";
-                        options += '<select class="single_choice rightF" >' +
+                        options += '<select class="single_choice rightF" id="single_' + singleNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '">' +
                             '<option value="0">请选择正确答案</option>' +
                             '<option value="1">A</option>' +
                             '<option value="2">B</option>' +
@@ -247,42 +249,42 @@
                         singleNo = singleNo + 1;
                     } else if ($(this)[0].A != undefined && $(this)[0].answer.length != 1) {
                         var options = "";
-                        options += '<div class="content">' + doubleNo + '、 ' + $(this)[0].title +'</div>' +
-                        '<div class="choice_box">' +
-                        '<div class="content">' +
-                        '<input type="checkbox" class="check"><span>A.' + $(this)[0].A + '</span></input>' +
-                        '</div>' +
-                        '<div class="content">' +
-                        '<input type="checkbox" class="check"><span>B.' + $(this)[0].B + '</span></input>' +
-                        ' </div>' +
-                        ' <div class="content">' +
-                        '<input type="checkbox" class="check"><span>C.' + $(this)[0].C + '</span></input>' +
-                        '</div>' +
-                        '<div class="content">' +
-                        ' <input type="checkbox" class="check" id=><span>D.' + $(this)[0].D + '</span></input>'
+                        options += '<div class="content">' + doubleNo + '、 ' + $(this)[0].title + '</div>' +
+                            '<div class="choice_box">' +
+                            '<div class="content">' +
+                            '<input value="1" type="checkbox" class="check" name="double_' + doubleNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '"><span>A.' + $(this)[0].A + '</span></input>' +
+                            '</div>' +
+                            '<div class="content">' +
+                            '<input value="2" type="checkbox" class="check" name="double_' + doubleNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '"><span>B.' + $(this)[0].B + '</span></input>' +
+                            ' </div>' +
+                            ' <div class="content">' +
+                            '<input value="3" type="checkbox" class="check" name="double_' + doubleNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '"><span>C.' + $(this)[0].C + '</span></input>' +
+                            '</div>' +
+                            '<div class="content">' +
+                            ' <input value="4" type="checkbox" class="check" name="double_' + doubleNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '"><span>D.' + $(this)[0].D + '</span></input>'
                         ' </div>' +
                         ' </div>';
                         $("#double").append(options);
                         $("#double").val("").trigger("change");
                         doubleNo = doubleNo + 1;
-                    }else if($(this)[0].type=="Judgment"){
-                        var options="";
-                        options+='<select class="judge_choice rightF">'+
-                            '<option value="0">请选择正确答案</option>'+
-                            '<option value="1">T</option>'+
-                            '<option value="2">F</option>'+
-                            '</select>'+
-                            '<div class="content">'+judgeNo+'、 '+$(this)[0].title+'</div>';
+                    } else if ($(this)[0].type == "Judgment") {
+                        var options = "";
+                        options += '<select class="judge_choice rightF" id="judgeMent_' + judgeNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '">' +
+                            '<option value="0">请选择正确答案</option>' +
+                            '<option value="1">T</option>' +
+                            '<option value="2">F</option>' +
+                            '</select>' +
+                            '<div class="content">' + judgeNo + '、 ' + $(this)[0].title + '</div>';
                         $("#judgeMent").append(options);
                         $("#judgeMent").val("").trigger("change");
-                        judgeNo=judgeNo+1;
-                    }else if($(this)[0].type=="Essay"){
-                        var options="";
-                        options+='<div class="content">'+essayNo+'、 '+$(this)[0].title+'</div>'+
-                            '<textarea type="text" class="exam_many_lines"></textarea>';
+                        judgeNo = judgeNo + 1;
+                    } else if ($(this)[0].type == "Essay") {
+                        var options = "";
+                        options += '<div class="content">' + essayNo + '、 ' + $(this)[0].title + '</div>' +
+                            '<textarea type="text" class="exam_many_lines" id="essay_' + essayNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '"></textarea>';
                         $("#essay").append(options);
                         $("#essay").val("").trigger("change");
-                        essayNo=essayNo+1;
+                        essayNo = essayNo + 1;
                     }
                 });
 //                alert(data);
@@ -290,10 +292,68 @@
         });
 
 
-
     });
     function examOver() {
-        alert(1);
+        //alert('singleNo:'+singleIsBe+','+'answer:'+$("#single_"+singleIsBe+" option:selected").val()+',filePath:'+$("#single_"+singleIsBe).attr("questionId"));
+//        var singleIsBe=1;
+        var paperResult="";
+        //单选
+        var singleResult = "";
+        for (singleIsBe = 1; singleIsBe < 21; singleIsBe++) {
+            if ($("#single_" + singleIsBe).attr("questionId") != undefined) {
+                singleResult = '{"singleNo":"' + singleIsBe + '","answer":"' + $("#single_" + singleIsBe + " option:selected").val() + '","filePath":"' + $("#single_" + singleIsBe).attr("filePath") + '","questionId":"' + $("#single_" + singleIsBe).attr("questionId") + '"},' + singleResult;
+            }
+        }
+        singleResult = singleResult.substr(0, singleResult.length - 1)
+//        alert(singleResult);
+
+        //多选
+        var doubleResult = "";
+        for (doubleIsBe = 1; doubleIsBe < 21; doubleIsBe++) {
+            if ($('input:checkbox[name="double_' + doubleIsBe + '"]').attr("filePath") != undefined) {
+                var doubleResult_array = new Array();
+                $('input:checkbox[name="double_' + doubleIsBe + '"]:checked').each(function () {
+                    doubleResult_array.push($(this).val());
+                });
+                var tmp=doubleResult_array.join(' || ');
+                doubleResult='{"doubleNo":"'+doubleIsBe+'","answer":"'+tmp+'","filePath":"'+$('input:checkbox[name="double_' + doubleIsBe + '"]').attr("filePath")+'","questionId":"'+$('input:checkbox[name="double_' + doubleIsBe + '"]').attr("questionId")+'"},'+doubleResult;
+            }
+        }
+        doubleResult=doubleResult.substr(0,doubleResult.length-1);
+//        alert(doubleResult);
+
+        //判断题
+        var judgmentResult="";
+        for (judgmentIsBe = 1; judgmentIsBe < 21; judgmentIsBe++) {
+            if ($("#judgeMent_" + judgmentIsBe).attr("questionId") != undefined) {
+                judgmentResult = '{"judgeNo":"' + judgmentIsBe + '","answer":"' + $("#judgeMent_" + judgmentIsBe + " option:selected").val() + '","filePath":"' + $("#judgeMent_" + judgmentIsBe).attr("filePath") + '","questionId":"' + $("#judgeMent_" + judgmentIsBe).attr("questionId") + '"},' + judgmentResult;
+            }
+        }
+        judgmentResult=judgmentResult.substr(0,judgmentResult.length-1);
+//        alert(judgmentResult);
+
+        //问答题
+        var essayResult="";
+        for(essayIsNe=1;essayIsNe<21;essayIsNe++){
+            if($("#essay_"+essayIsNe).attr("questionId") !=undefined){
+                essayResult = '{"essayNo":"' + essayIsNe + '","answer":"' + $("#essay_" + essayIsNe).val() + '","filePath":"' + $("#essay_" + essayIsNe).attr("filePath") + '","questionId":"' + $("#essay_" + essayIsNe).attr("questionId") + '"},' + essayResult;
+            }
+        }
+        essayResult=essayResult.substr(0,essayResult.length-1);
+//        alert(essayResult);
+
+        paperResult=singleResult+','+doubleResult+','+judgmentResult+','+essayResult;
+//        alert(paperResult);
+        //上传试卷信息
+        $.ajax({
+            url:"${basePath}/ExamPlan/putPaper.htm",
+            data:paperResult,
+            type:"POST",
+            success:function (result) {
+                var data=result.data;
+            }
+        });
     }
+
 </script>
 </html>

@@ -157,4 +157,18 @@ public class ExamPlanController {
         }
         return resp;
     }
+
+    @RequestMapping("putPaper")
+    @ResponseBody
+    public Resp putPaper(HttpServletRequest request,HttpServletResponse response ){
+        Resp resp=new Resp();
+        Enumeration enumeration=request.getParameterNames();
+        String param=null;
+        while (enumeration.hasMoreElements()){
+             param= (String) enumeration.nextElement();
+        }
+        Map map=JSONObject.fromObject("["+param+"]");
+        System.out.println("ok");
+        return resp;
+    }
 }
