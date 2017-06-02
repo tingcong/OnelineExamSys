@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="line"></li>
-                <li id="teacher_check.jsp">
+                <li id="teacher_check_detail.jsp">
                     <a href="#">
                         <ul class="funclistul">查看学生的成绩</ul>
                     </a>

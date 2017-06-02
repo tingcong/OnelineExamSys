@@ -1,6 +1,7 @@
 package com.tc.mapper;
 
 import com.tc.entity.ExamResult;
+import com.tc.entity.ResultList;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface ExamResultMapper {
     int updateEssayScore(Map<String,Integer> map);
 
     int updateTotalScore(Map<String,Integer> map);
+
+    List<ResultList> getResultList();
 }

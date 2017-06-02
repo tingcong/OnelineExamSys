@@ -22,4 +22,16 @@
         student_ID=#{studentId}
         AND paper_ID=#{paperId}
     </update>
+
+    <select id="getResultList" resultType="com.tc.entity.ResultList">
+        SELECT
+        stu.ID AS studentId,
+        stu.student_name AS studentName,
+        stu.Class_NO AS classId,
+        ep.exam_name AS examName,
+        er.total_score AS totalScore
+        FROM tab_exam_result er
+        LEFT JOIN tab_student stu ON er.student_ID=stu.ID
+        LEFT JOIN tab_exam_plan ep on er.paper_ID=ep.ID
+    </select>
 </mapper>

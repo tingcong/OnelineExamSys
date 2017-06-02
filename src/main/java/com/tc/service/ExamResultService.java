@@ -2,6 +2,7 @@ package com.tc.service;
 
 import com.tc.entity.ExamPlan;
 import com.tc.entity.ExamResult;
+import com.tc.entity.ResultList;
 import com.tc.mapper.ExamPlanMapper;
 import com.tc.mapper.ExamResultMapper;
 import com.tc.utils.XMLUtil;
@@ -85,5 +86,9 @@ public class ExamResultService {
 
     public int updateTotalScore(Map map){
         return examResultMapper.updateTotalScore(map);
+    }
+
+    public List<ResultList> getResultList(){
+        return examResultMapper.getResultList();
     }
 }

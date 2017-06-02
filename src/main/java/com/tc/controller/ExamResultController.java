@@ -1,12 +1,10 @@
 package com.tc.controller;
 
+import com.sun.org.apache.regexp.internal.RE;
 import com.tc.constants.FieldConstants;
 import com.tc.constants.MsgConstants;
 import com.tc.constants.NumberConstants;
-import com.tc.entity.ExamPlan;
-import com.tc.entity.ExamResult;
-import com.tc.entity.Resp;
-import com.tc.entity.User;
+import com.tc.entity.*;
 import com.tc.mapper.ExamResultMapper;
 import com.tc.service.ExamPlanService;
 import com.tc.service.ExamResultService;
@@ -155,6 +153,19 @@ public class ExamResultController {
             map2.put("studentId",Integer.parseInt(studentId));
             examResultService.updateTotalScore(map2);
         }
+        resp.setStatus(NumberConstants.STATUS_OK);
+        return resp;
+    }
+
+    @RequestMapping("getResultList")
+    @ResponseBody
+    public Resp getResultList(HttpServletRequest request, HttpServletResponse response){
+        Resp resp=new Resp();
+        List<ResultList> resultLists=examResultService.getResultList();
+        if(resultLists.size()==0){
+            resultLists=new ArrayList<>();
+        }
+        resp.setData(resultLists);
         resp.setStatus(NumberConstants.STATUS_OK);
         return resp;
     }
