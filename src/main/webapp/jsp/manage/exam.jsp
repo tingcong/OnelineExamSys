@@ -154,12 +154,12 @@
             <div class="title" id="judge_title">三、判断正误</div>
 
             <div class="content_box" id="judgeMent">
-                <select class="judge_choice rightF" id="judge_answer">
-                    <option value="0">请选择正确答案</option>
-                    <option value="1">T</option>
-                    <option value="2">F</option>
-                </select>
-                <div class="content"></div>
+                <%--<select class="judge_choice rightF" id="judge_answer">--%>
+                <%--<option value="0">请选择正确答案</option>--%>
+                <%--<option value="1">T</option>--%>
+                <%--<option value="2">F</option>--%>
+                <%--</select>--%>
+                <%--<div class="content"></div>--%>
             </div>
 
         </div>
@@ -168,8 +168,8 @@
             <div class="title" id="essay_title">四、简答辨析</div>
 
             <div class="content_box" id="essay">
-                <div class="content"></div>
-                <textarea type="text" class="exam_many_lines"></textarea>
+                <%--<div class="content"></div>--%>
+                <%--<textarea type="text" class="exam_many_lines"></textarea>--%>
             </div>
 
         </div>
@@ -196,6 +196,7 @@
     var doubleNo = 1;
     var judgeNo = 1;
     var essayNo = 1;
+    var examId =<%=request.getParameter("examId")%>;
 
     $(function () {
         //初始化样式
@@ -209,13 +210,31 @@
             width: 150,
             height: 40,
         });
-
-        $("#tip").click(function () {
+//        $("#startButton").attr("disabled", true);
+        $("#startButton").click(function () {
             $("#tip").css("display", "none");
         });
 
-        var examId =<%=request.getParameter("examId")%>;
 
+        //添加考试记录
+        $.ajax({
+            url: "${basePath}/ExamPlan/insertExamRecord.htm",
+            data: {
+                "examId": examId
+            },
+            type: "POST",
+            success: function (result) {
+                var data = result.data;
+                if (result.status==0) {
+//                    alert(result.status);
+                    //如果记录存在，如果存在则不能再进行考试
+//                    $("#startButton").attr("disabled", true);
+                }
+            }
+        });
+
+
+        //初始化试卷
         $.ajax({
             url: "${basePath}/ExamPlan/getPaper.htm",
             data: {
@@ -225,6 +244,7 @@
             success: function (result) {
                 var data = result.data;
                 $(data).each(function () {
+                    //考试编号
 
                     //单选题
                     if ($(this)[0].A != undefined && $(this)[0].answer.length == 1) {
@@ -280,6 +300,7 @@
                         judgeNo = judgeNo + 1;
                     } else if ($(this)[0].type == "Essay") {
                         var options = "";
+//                        alert($(this)[0].filePath);
                         options += '<div class="content">' + essayNo + '、 ' + $(this)[0].title + '</div>' +
                             '<textarea type="text" class="exam_many_lines" id="essay_' + essayNo + '" filePath="' + $(this)[0].filePath + '" questionId="' + $(this)[0].questionId + '"></textarea>';
                         $("#essay").append(options);
@@ -296,12 +317,16 @@
     function examOver() {
         //alert('singleNo:'+singleIsBe+','+'answer:'+$("#single_"+singleIsBe+" option:selected").val()+',filePath:'+$("#single_"+singleIsBe).attr("questionId"));
 //        var singleIsBe=1;
-        var paperResult="";
+        var paperResult = "";
         //单选
         var singleResult = "";
         for (singleIsBe = 1; singleIsBe < 21; singleIsBe++) {
             if ($("#single_" + singleIsBe).attr("questionId") != undefined) {
-                singleResult = '{"singleNo":"' + singleIsBe + '","answer":"' + $("#single_" + singleIsBe + " option:selected").val() + '","filePath":"' + $("#single_" + singleIsBe).attr("filePath") + '","questionId":"' + $("#single_" + singleIsBe).attr("questionId") + '"},' + singleResult;
+                var filePath = $("#single_" + singleIsBe).attr("filePath");
+                subject = filePath.substring(filePath.length - 9, filePath.length - 8);
+                questionType = filePath.substring(filePath.length - 7, filePath.length - 6);
+//                alert(subject);
+                singleResult = '{"singleNo":"' + singleIsBe + '","answer":"' + $("#single_" + singleIsBe + " option:selected").val() + '","subject":"' + subject + '","questionId":"' + $("#single_" + singleIsBe).attr("questionId") + '","questionType":"' + questionType + '","examId":"' + examId + '"},' + singleResult;
             }
         }
         singleResult = singleResult.substr(0, singleResult.length - 1)
@@ -311,48 +336,63 @@
         var doubleResult = "";
         for (doubleIsBe = 1; doubleIsBe < 21; doubleIsBe++) {
             if ($('input:checkbox[name="double_' + doubleIsBe + '"]').attr("filePath") != undefined) {
+                var filePath = $('input:checkbox[name="double_' + doubleIsBe + '"]').attr("filePath");
+                subject = filePath.substring(filePath.length - 9, filePath.length - 8);
+                questionType = filePath.substring(filePath.length - 7, filePath.length - 6);
+
                 var doubleResult_array = new Array();
                 $('input:checkbox[name="double_' + doubleIsBe + '"]:checked').each(function () {
                     doubleResult_array.push($(this).val());
                 });
-                var tmp=doubleResult_array.join(' || ');
-                doubleResult='{"doubleNo":"'+doubleIsBe+'","answer":"'+tmp+'","filePath":"'+$('input:checkbox[name="double_' + doubleIsBe + '"]').attr("filePath")+'","questionId":"'+$('input:checkbox[name="double_' + doubleIsBe + '"]').attr("questionId")+'"},'+doubleResult;
+                var tmp = doubleResult_array.join(' || ');
+                doubleResult = '{"doubleNo":"' + doubleIsBe + '","answer":"' + tmp + '","subject":"' + subject + '","questionId":"' + $('input:checkbox[name="double_' + doubleIsBe + '"]').attr("questionId") + '","questionType":"' + questionType + '","examId":"' + examId + '"},' + doubleResult;
             }
         }
-        doubleResult=doubleResult.substr(0,doubleResult.length-1);
+        doubleResult = doubleResult.substr(0, doubleResult.length - 1);
 //        alert(doubleResult);
 
         //判断题
-        var judgmentResult="";
+        var judgmentResult = "";
         for (judgmentIsBe = 1; judgmentIsBe < 21; judgmentIsBe++) {
             if ($("#judgeMent_" + judgmentIsBe).attr("questionId") != undefined) {
-                judgmentResult = '{"judgeNo":"' + judgmentIsBe + '","answer":"' + $("#judgeMent_" + judgmentIsBe + " option:selected").val() + '","filePath":"' + $("#judgeMent_" + judgmentIsBe).attr("filePath") + '","questionId":"' + $("#judgeMent_" + judgmentIsBe).attr("questionId") + '"},' + judgmentResult;
+                var filePath = $("#judgeMent_" + judgmentIsBe).attr("filePath");
+                subject = filePath.substring(filePath.length - 9, filePath.length - 8);
+                questionType = filePath.substring(filePath.length - 7, filePath.length - 6);
+
+                judgmentResult = '{"judgeNo":"' + judgmentIsBe + '","answer":"' + $("#judgeMent_" + judgmentIsBe + " option:selected").val() + '","subject":"' + subject + '","questionId":"' + $("#judgeMent_" + judgmentIsBe).attr("questionId") + '","questionType":"' + questionType + '","examId":"' + examId + '"},' + judgmentResult;
             }
         }
-        judgmentResult=judgmentResult.substr(0,judgmentResult.length-1);
+        judgmentResult = judgmentResult.substr(0, judgmentResult.length - 1);
 //        alert(judgmentResult);
 
         //问答题
-        var essayResult="";
-        for(essayIsNe=1;essayIsNe<21;essayIsNe++){
-            if($("#essay_"+essayIsNe).attr("questionId") !=undefined){
-                essayResult = '{"essayNo":"' + essayIsNe + '","answer":"' + $("#essay_" + essayIsNe).val() + '","filePath":"' + $("#essay_" + essayIsNe).attr("filePath") + '","questionId":"' + $("#essay_" + essayIsNe).attr("questionId") + '"},' + essayResult;
+        var essayResult = "";
+        for (essayIsNe = 1; essayIsNe < 21; essayIsNe++) {
+            if ($("#essay_" + essayIsNe).attr("questionId") != undefined) {
+                var filePath = $("#essay_" + essayIsNe).attr("filePath");
+                subject = filePath.substring(filePath.length - 9, filePath.length - 8);
+                questionType = filePath.substring(filePath.length - 7, filePath.length - 6);
+
+                essayResult = '{"essayNo":"' + essayIsNe + '","answer":"' + $("#essay_" + essayIsNe).val() + '","subject":"' + subject + '","questionId":"' + $("#essay_" + essayIsNe).attr("questionId") + '","questionType":"' + questionType + '","examId":"' + examId + '"},' + essayResult;
             }
         }
-        essayResult=essayResult.substr(0,essayResult.length-1);
+        essayResult = essayResult.substr(0, essayResult.length - 1);
 //        alert(essayResult);
 
-        paperResult=singleResult+','+doubleResult+','+judgmentResult+','+essayResult;
+        paperResult = singleResult + ',' + doubleResult + ',' + judgmentResult + ',' + essayResult;
 //        alert(paperResult);
         //上传试卷信息
         $.ajax({
-            url:"${basePath}/ExamPlan/putPaper.htm",
-            data:paperResult,
-            type:"POST",
-            success:function (result) {
-                var data=result.data;
+            url: "${basePath}/ExamPlan/putPaper.htm",
+            data: paperResult,
+            type: "POST",
+            success: function (result) {
+                var data = result.data;
             }
         });
+
+        alert("考试结束");
+        window.location.href="${basePath}/jsp/manage/student.jsp";
     }
 
 </script>

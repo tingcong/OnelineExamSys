@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tc.mapper.ExamResultMapper">
+    <select id="getExamResult" resultType="com.tc.entity.ExamResult">
+        SELECT
+          plan.exam_name AS examName,
+          result.total_score AS totalScore
+        from tab_exam_result result
+        LEFT JOIN tab_exam_plan plan on result.paper_ID=plan.ID
+        WHERE result.student_ID=#{studentId}
+    </select>
+</mapper>

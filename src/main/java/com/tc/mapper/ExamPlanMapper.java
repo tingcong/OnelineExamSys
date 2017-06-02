@@ -1,6 +1,7 @@
 package com.tc.mapper;
 
 import com.tc.entity.ExamPlan;
+import com.tc.entity.ExamResult;
 
 import java.util.List;
 import java.util.Map;
@@ -30,5 +31,20 @@ public interface ExamPlanMapper {
 
 //    添加考试题型和分数
     int updatePaperById(Map map);
+
+    //保存分数
+    Integer saveScore(Map map);
+
+    //获取考试记录的总条数
+    Integer getExamCount();
+
+    //添加考试记录
+    Integer insertExamRecord(Map map);
+
+    //根据学号和考试编号获取考试记录
+    ExamResult getExamRecordByStudentIdAndPaperId(Map map);
+
+    //根据老师工号获取考试安排信息
+    List<ExamPlan> getExamPlanByTeachId(Integer teacherId);
 
 }

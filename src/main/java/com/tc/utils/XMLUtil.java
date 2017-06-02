@@ -4,13 +4,9 @@ import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
-import org.junit.Test;
 
-import javax.print.Doc;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -432,5 +428,79 @@ public class XMLUtil {
         return singleDetailMap;
     }
 
+    /**
+     * 根据文件路径和题号获取答案
+     * @param map   封装文件路径和题号参数
+     * @return
+     */
+    public static String getAnswer(Map map) throws Exception {
+        SAXReader reader=new SAXReader();
+        System.out.println(map.get("filePath").toString());
+        Document doc=reader.read(map.get("filePath").toString());
+        Element rootNode=doc.getRootElement();
+        List<Element> elements=rootNode.elements();
+        for(Element ele:elements){
+            if(ele.attribute("id").getText().trim().equals(map.get("id"))){
+                return ele.element("answer").getText().trim();
+            }
+        }
+        return "ERROR";
+    }
 
+
+    public static void saveExamEssay(Map map) throws Exception {
+        SAXReader reader=new SAXReader();
+        Document doc=reader.read(map.get("filePath").toString());
+        Element rootNode=doc.getRootElement();
+        Element element=rootNode.addElement("result");
+        element.addAttribute("paper_id",map.get("paperId").toString().trim());
+        element.addAttribute("question_id",map.get("questionId").toString().trim());
+        element.addAttribute("student_id",map.get("studentId").toString().trim());
+        element.addElement("student-answer").addText(map.get("answer").toString());
+        element.addElement("isRead").addText("F");
+
+        //将修改过后的对象写出到预原题库文件
+        FileOutputStream outputStream = new FileOutputStream(map.get("filePath").toString());
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("utf-8");
+        XMLWriter writer = new XMLWriter(outputStream, format);
+        writer.write(doc);
+        writer.close();
+    }
+
+    /**
+     * 根据考试编号获取没有批改的试卷
+     * @param
+     * @return
+     */
+    public static List<Map> getNotCorrection(Map map) throws Exception {
+        //存放返回的结果
+        List<Map> mapList=new ArrayList<>();
+
+        SAXReader reader=new SAXReader();
+        Document doc=reader.read(map.get("filePath").toString());
+        Element rootNode=doc.getRootElement();
+        List<Element> elements=rootNode.elements();
+        for(Element ele :elements){
+            //找到对应的考试编号并且标记状态 未未读“F"
+            Map resultMap=new HashMap();
+            if(ele.attribute("paper_id").getText().equals(map.get("examId")) && ele.element("isRead").getText().equals("F")){
+                resultMap.put("paperId",ele.attribute("paper_id").getText());
+                resultMap.put("studentId",ele.attribute("student_id").getText());
+                resultMap.put("questionId",ele.attribute("question_id").getText());
+                resultMap.put("studentAnswer",ele.element("student-answer").getText());
+                ele.element("isRead").setText("T");
+            }
+            mapList.add(resultMap);
+        }
+
+        //将修改过后的对象写出到预原题库文件
+        FileOutputStream outputStream = new FileOutputStream(map.get("filePath").toString());
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("utf-8");
+        XMLWriter writer = new XMLWriter(outputStream, format);
+        writer.write(doc);
+        writer.close();
+        return mapList;
+    }
 }

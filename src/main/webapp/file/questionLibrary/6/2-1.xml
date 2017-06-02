@@ -9,7 +9,7 @@
             <C>18</C>
             <D>16</D>
         </choices>
-        <answer>ABC</answer>
+        <answer>1234</answer>
     </question>
     <question id="2">
         <title>阿迪地方</title>
@@ -19,7 +19,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="3">
         <title>阿迪地方</title>
@@ -29,7 +29,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="4">
         <title>阿迪地方</title>
@@ -39,7 +39,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="5">
         <title>阿迪地方</title>
@@ -49,7 +49,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="6">
         <title>阿迪地方</title>
@@ -59,7 +59,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="7">
         <title>阿迪地方</title>
@@ -69,7 +69,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="8">
         <title>阿迪地方</title>
@@ -79,7 +79,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="9">
         <title>阿迪地方</title>
@@ -89,7 +89,7 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
     <question id="10">
         <title>阿迪地方</title>
@@ -99,6 +99,6 @@
             <C>既符合</C>
             <D>if</D>
         </choices>
-        <answer>234</answer>
+        <answer>1234</answer>
     </question>
 </questions>

@@ -5,11 +5,13 @@ import com.tc.constants.FieldConstants;
 import com.tc.constants.MsgConstants;
 import com.tc.constants.NumberConstants;
 import com.tc.entity.ExamPlan;
+import com.tc.entity.ExamResult;
 import com.tc.entity.Resp;
 import com.tc.entity.User;
 import com.tc.service.ExamPlanService;
 import com.tc.utils.DatetimeUtil;
 import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by htc on 2017/5/16.
@@ -158,17 +157,78 @@ public class ExamPlanController {
         return resp;
     }
 
+    /**
+     * 提交试卷
+     * @param request
+     * @param response
+     * @param session
+     * @return
+     */
     @RequestMapping("putPaper")
     @ResponseBody
-    public Resp putPaper(HttpServletRequest request,HttpServletResponse response ){
+    public Resp putPaper(HttpServletRequest request,HttpServletResponse response ,HttpSession session){
         Resp resp=new Resp();
-        Enumeration enumeration=request.getParameterNames();
-        String param=null;
-        while (enumeration.hasMoreElements()){
-             param= (String) enumeration.nextElement();
+
+        try {
+            Enumeration enumeration=request.getParameterNames();
+            String param=null;
+            while (enumeration.hasMoreElements()){
+                 param= (String) enumeration.nextElement();
+            }
+            param="["+param+"]";
+            System.out.println(param);
+            JSONArray jsonArray=JSONArray.fromObject(param);
+            List<Map<String,String>> mapList=(List)jsonArray;
+
+            String projectRealPath=request.getSession().getServletContext().getRealPath("");
+            String projectRootRealPath=projectRealPath.substring(0,projectRealPath.indexOf("target"));
+            String filePath=projectRootRealPath+"\\src\\main\\webapp\\file\\questionLibrary";
+
+            String account=((User)session.getAttribute(FieldConstants.ONLINE_USER)).getAccount();
+            examPlanService.putPaper(mapList,filePath,account);
+//        for (int i = 0; i < mapList.size(); i++) {
+//            Map<String,String> obj=mapList.get(i);
+//
+//            for(Map.Entry<String,String> entry : obj.entrySet()){
+//                String strkey1 = entry.getKey();
+//                Object strval1 = entry.getValue();
+//                System.out.println("KEY:"+strkey1+"  -->  Value:"+strval1+"\n");
+//            }
+//        }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        Map map=JSONObject.fromObject("["+param+"]");
-        System.out.println("ok");
         return resp;
     }
+
+    /**
+     * 添加考试记录
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("insertExamRecord")
+    @ResponseBody
+    public Resp insertExamRecord(HttpServletRequest request,HttpServletResponse response,HttpSession session,String examId){
+        Resp resp=new Resp();
+        try {
+            Map map=new HashMap();
+            map.put("paper_id",Integer.parseInt(examId));
+            map.put("student_id",Integer.parseInt(((User)session.getAttribute(FieldConstants.ONLINE_USER)).getAccount()));
+            //该记录已存在
+            ExamResult examResult=examPlanService.getExamRecordByStudentIdAndPaperId(map);
+            if(examResult!=null){
+                resp.setMsg(MsgConstants.DATA_EXIST);
+                resp.setStatus(NumberConstants.STATUS_ERROR);
+                return resp;
+            }
+            map.put("id",examPlanService.gerExamCount()+1);
+            Integer flag=examPlanService.insertExamRecord(map);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return resp;
+    }
+
+
 }

@@ -124,4 +124,73 @@
         WHERE
           id=#{id}
     </update>
+
+
+    <update id="saveScore" parameterType="java.util.Map">
+        UPDATE tab_exam_result SET
+
+        <if test="singleScore != null and singleScore !=''">
+            single_score=#{singleScore}
+        </if>
+        <if test="singleScore == null and singleScore ==''">
+            single_score=0
+        </if>
+            , multi_score=#{douleScore}
+            ,judge_score=#{judgeScore}
+        <if test="essayScore != null and essayScore !=''">
+            ,essay_score=#{essayScore}
+        </if>
+        WHERE
+        student_ID=#{account}
+        AND
+        paper_ID=#{paperId}
+    </update>
+
+    <!--添加考试记录-->
+    <insert id="insertExamRecord" parameterType="java.util.Map">
+        INSERT into
+            tab_exam_result(id,paper_id,student_id)
+        values(#{id},#{paper_id},#{student_id})
+    </insert>
+
+    <!--读取考试记录的总条数-->
+    <select id="getExamCount" resultType="java.lang.Integer">
+        SELECT count(1) FROM tab_exam_result
+    </select>
+
+    <!--根据学号和考试编号获取记录-->
+    <select id="getExamRecordByStudentIdAndPaperId" resultType="com.tc.entity.ExamResult">
+        SELECT
+          student_id AS studentId,
+          total_score AS totalScore
+        FROM  tab_exam_result
+        WHERE student_id=#{student_id} AND  paper_id=#{paper_id}
+    </select>
+
+    <select id="getExamPlanByTeachId" resultType="com.tc.entity.ExamPlan" parameterType="java.lang.Integer">
+        SELECT
+        ID AS id,
+        exam_name AS examName,
+        subject_ID AS  subjectId,
+        paper_ID AS paperId,
+        class_ID AS classId,
+        start_datetime AS examStartDatetime,
+        end_datetime AS examEndDatetime,
+        time_limit AS timeLimit,
+        create_datetime AS createDatetime,
+        teacher_ID AS teacherId,
+        single_choice_num AS singleNum,
+        single_choice_scope AS singleScope,
+        multiple_choice_num AS doubleNum,
+        multiple_choice_scope AS getDoubleNum,
+        judgment_num AS judgmentNum,
+        judgment_scope AS judgmentScope,
+        essay_num AS essayNum,
+        essay_scope AS essayScope,
+        total_scope AS totalScope
+        FROM
+        tab_exam_plan
+        WHERE
+        teacher_ID=#{teacherId}
+    </select>
 </mapper>

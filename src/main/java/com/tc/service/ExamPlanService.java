@@ -1,6 +1,7 @@
 package com.tc.service;
 
 import com.tc.entity.ExamPlan;
+import com.tc.entity.ExamResult;
 import com.tc.entity.Resp;
 import com.tc.mapper.ExamPlanMapper;
 import com.tc.utils.XMLUtil;
@@ -16,6 +17,7 @@ import java.util.*;
 public class ExamPlanService {
     @Autowired
     private ExamPlanMapper examPlanMapper;
+
 
     public int insertExamPlan(Map map){
         return examPlanMapper.insertExamPlan(map);
@@ -94,8 +96,8 @@ public class ExamPlanService {
         List<Object> essayList=new ArrayList<>();
         Iterator<Integer> essayIt=EssaySet.iterator();
         while(essayIt.hasNext()){
-//            essayList.add(XMLUtil.getEssayDetail(essayIt.next(),path+"\\"+subjectId+"\\3-1.xml"));
-            paperDetail.add(XMLUtil.getEssayDetail(essayIt.next(),path+"\\"+subjectId+"\\3-1.xml"));
+//            essayList.add(XMLUtil.getEssayDetail(essayIt.next(),path+"\\"+subjectId+"\\4-1.xml"));
+            paperDetail.add(XMLUtil.getEssayDetail(essayIt.next(),path+"\\"+subjectId+"\\4-1.xml"));
         }
 
         //试卷信息汇总
@@ -107,5 +109,109 @@ public class ExamPlanService {
 
         resp.setData(paperDetail);
         return resp;
+    }
+
+    /**
+     * 提交试卷，系统自动批改
+     * @param mapList
+     * @return
+     */
+    public Resp putPaper(List<Map<String,String>> mapList,String filePathParam,String account) throws Exception {
+        //存放系统自动阅卷的分数
+        Map<String,Integer> mapScore=new HashMap<>();
+        //单选题总分
+        Integer singleScore=0;
+        //多选题总分
+        Integer douleScore=0;
+        //判断题总分
+        Integer judgeScore=0;
+        //问答题总分
+        Integer essayScore=0;
+
+        //题目批改，选择、判断系统自动评卷，问答题则存入文件等待老师批改
+        for (int i = 0; i <mapList.size() ; i++) {
+            //请求答案的参数
+            Map paramMap=new HashMap();
+            Map<String,String> map=mapList.get(i);
+            String filePath=filePathParam+"\\"+map.get("subject").trim()+"\\"+map.get("questionType").trim()+"-1.xml";
+//            System.out.println(filePath);
+            paramMap.put("filePath",filePath);
+            //单项选择，判断
+            if(map.get("questionType").equals("1")){
+                paramMap.put("id",map.get("questionId").trim());
+                String answer=XMLUtil.getAnswer(paramMap);
+                //答案正确
+                if(answer.equals(map.get("answer").trim())){
+                    singleScore=singleScore+5;
+                }
+//                System.out.println(answer);
+            }else if(map.get("questionType").equals("2")){  //多选
+//                System.out.println(map.get("answer").replace("|","").replace(" ",""));
+                paramMap.put("id",map.get("questionId").trim());
+                String answer=XMLUtil.getAnswer(paramMap);
+                //答案正确
+                if(answer.equals(map.get("answer").replace("|","").replace(" ",""))){
+                    douleScore=douleScore+5;
+                }
+            }else if(map.get("questionType").equals("3")){  //判断题
+                paramMap.put("id",map.get("questionId").trim());
+                String answer=XMLUtil.getAnswer(paramMap);
+                //答案正确
+                if(answer.equals(map.get("answer").trim())){
+                    judgeScore=judgeScore+5;
+                }
+            }else if(map.get("questionType").equals("4")){  //问答
+//                System.out.println(filePath.indexOf("file"));
+//                System.out.println(filePath.substring(0,filePath.indexOf("questionLibrary")));
+                Map mapEssay=new HashMap();
+                String essayFilePath=filePath.substring(0,filePath.indexOf("questionLibrary"))+"paperResult\\"+map.get("subject").trim()+"\\result.xml";
+                System.out.println(essayFilePath);
+                map.put("filePath",essayFilePath);
+                map.put("studentId",account);
+                map.put("paperId",map.get("examId"));
+                map.put("answer",map.get("answer"));
+                map.put("questionId",map.get("questionId"));
+                XMLUtil.saveExamEssay(map);
+            }
+            mapScore.put("paperId",Integer.parseInt(map.get("examId")));
+        }
+        mapScore.put("singleScore",singleScore);
+        mapScore.put("douleScore",douleScore);
+        mapScore.put("judgeScore",judgeScore);
+        mapScore.put("account",Integer.parseInt(account));
+
+//        System.out.println(singleScore);
+//        System.out.println(douleScore);
+//        System.out.println(judgeScore);
+
+        //将得分存放到数据库
+         int flag=saveScore(mapScore);
+        System.out.println(flag);
+        return null;
+    }
+
+    //保存考试分数
+    public Integer saveScore(Map map){
+        return examPlanMapper.saveScore(map);
+    }
+
+    //增加考试记录
+    public Integer insertExamRecord(Map map){
+        return examPlanMapper.insertExamRecord(map);
+    }
+
+    //获取考试记录总数
+    public Integer gerExamCount(){
+        return examPlanMapper.getExamCount();
+    }
+
+    //根据学号和考试编号获取考试记录
+    public ExamResult getExamRecordByStudentIdAndPaperId(Map map){
+        return examPlanMapper.getExamRecordByStudentIdAndPaperId(map);
+    }
+
+    //根据教师工号获取考试安排信息
+    public List<ExamPlan> getExamPlanByTeachId(Integer teacherId){
+        return examPlanMapper.getExamPlanByTeachId(teacherId);
     }
 }
