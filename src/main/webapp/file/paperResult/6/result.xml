@@ -3,7 +3,7 @@
 <results> 
   <result paper_id="6" question_id="8" student_id="1310400114"> 
     <student-answer>6</student-answer>  
-    <isRead>F</isRead> 
+    <isRead>T</isRead> 
   </result>  
   <result paper_id="6" question_id="7" student_id="1310400114"> 
     <student-answer>5</student-answer>  
@@ -19,26 +19,26 @@
   </result>  
   <result paper_id="6" question_id="1" student_id="1310400114"> 
     <student-answer>2</student-answer>  
-    <isRead>F</isRead> 
+    <isRead>T</isRead> 
   </result>  
   <result paper_id="6" question_id="8" student_id="1310400114"> 
     <student-answer/>  
-    <isRead>F</isRead> 
+    <isRead>T</isRead> 
   </result>  
   <result paper_id="6" question_id="7" student_id="1310400114"> 
     <student-answer/>  
     <isRead>F</isRead> 
   </result>  
-  <result paper_id="6" question_id="6" student_id="1310400114"> 
+  <result paper_id="6" question_id="6" student_id="1310400113"> 
     <student-answer/>  
     <isRead>F</isRead> 
   </result>  
-  <result paper_id="6" question_id="3" student_id="1310400114"> 
+  <result paper_id="6" question_id="3" student_id="1310400113"> 
     <student-answer/>  
     <isRead>F</isRead> 
   </result>  
-  <result paper_id="6" question_id="1" student_id="1310400114">
-    <student-answer></student-answer>
-    <isRead>F</isRead>
-  </result>
+  <result paper_id="6" question_id="1" student_id="1310400113"> 
+    <student-answer/>  
+    <isRead>T</isRead> 
+  </result> 
 </results>

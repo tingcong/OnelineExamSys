@@ -9,4 +9,17 @@
         LEFT JOIN tab_exam_plan plan on result.paper_ID=plan.ID
         WHERE result.student_ID=#{studentId}
     </select>
+    <update id="updateEssayScore" parameterType="java.util.Map">
+        UPDATE tab_exam_result
+        SET essay_score=#{score}
+        WHERE student_id=#{studentId}
+        AND paper_id=#{paperId}
+    </update>
+    <update id="updateTotalScore" parameterType="java.util.Map">
+        update tab_exam_result
+        set total_score=single_score+multi_score+judge_score+essay_score
+        WHERE
+        student_ID=#{studentId}
+        AND paper_ID=#{paperId}
+    </update>
 </mapper>

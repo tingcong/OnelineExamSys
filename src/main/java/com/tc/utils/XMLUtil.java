@@ -390,7 +390,7 @@ public class XMLUtil {
                 singleDetailMap.put("title", ele.element("title").getText());
                 //答案
                 singleDetailMap.put("answer", ele.element("answer").getText());
-                singleDetailMap.put("type","Judgment");
+                singleDetailMap.put("type", "Judgment");
             }
         }
         return singleDetailMap;
@@ -398,6 +398,7 @@ public class XMLUtil {
 
     /**
      * 获取问答题信息
+     *
      * @param questionNum
      * @param path
      * @return
@@ -422,7 +423,7 @@ public class XMLUtil {
                 singleDetailMap.put("title", ele.element("title").getText());
                 //答案
                 singleDetailMap.put("answer", ele.element("answer").getText());
-                singleDetailMap.put("type","Essay");
+                singleDetailMap.put("type", "Essay");
             }
         }
         return singleDetailMap;
@@ -430,17 +431,18 @@ public class XMLUtil {
 
     /**
      * 根据文件路径和题号获取答案
-     * @param map   封装文件路径和题号参数
+     *
+     * @param map 封装文件路径和题号参数
      * @return
      */
     public static String getAnswer(Map map) throws Exception {
-        SAXReader reader=new SAXReader();
+        SAXReader reader = new SAXReader();
         System.out.println(map.get("filePath").toString());
-        Document doc=reader.read(map.get("filePath").toString());
-        Element rootNode=doc.getRootElement();
-        List<Element> elements=rootNode.elements();
-        for(Element ele:elements){
-            if(ele.attribute("id").getText().trim().equals(map.get("id"))){
+        Document doc = reader.read(map.get("filePath").toString());
+        Element rootNode = doc.getRootElement();
+        List<Element> elements = rootNode.elements();
+        for (Element ele : elements) {
+            if (ele.attribute("id").getText().trim().equals(map.get("id"))) {
                 return ele.element("answer").getText().trim();
             }
         }
@@ -449,13 +451,13 @@ public class XMLUtil {
 
 
     public static void saveExamEssay(Map map) throws Exception {
-        SAXReader reader=new SAXReader();
-        Document doc=reader.read(map.get("filePath").toString());
-        Element rootNode=doc.getRootElement();
-        Element element=rootNode.addElement("result");
-        element.addAttribute("paper_id",map.get("paperId").toString().trim());
-        element.addAttribute("question_id",map.get("questionId").toString().trim());
-        element.addAttribute("student_id",map.get("studentId").toString().trim());
+        SAXReader reader = new SAXReader();
+        Document doc = reader.read(map.get("filePath").toString());
+        Element rootNode = doc.getRootElement();
+        Element element = rootNode.addElement("result");
+        element.addAttribute("paper_id", map.get("paperId").toString().trim());
+        element.addAttribute("question_id", map.get("questionId").toString().trim());
+        element.addAttribute("student_id", map.get("studentId").toString().trim());
         element.addElement("student-answer").addText(map.get("answer").toString());
         element.addElement("isRead").addText("F");
 
@@ -470,28 +472,35 @@ public class XMLUtil {
 
     /**
      * 根据考试编号获取没有批改的试卷
+     *
      * @param
      * @return
      */
     public static List<Map> getNotCorrection(Map map) throws Exception {
         //存放返回的结果
-        List<Map> mapList=new ArrayList<>();
+        List<Map> mapList = new ArrayList<>();
 
-        SAXReader reader=new SAXReader();
-        Document doc=reader.read(map.get("filePath").toString());
-        Element rootNode=doc.getRootElement();
-        List<Element> elements=rootNode.elements();
-        for(Element ele :elements){
+        SAXReader reader = new SAXReader();
+        Document doc = reader.read(map.get("filePath").toString());
+        Element rootNode = doc.getRootElement();
+        List<Element> elements = rootNode.elements();
+        for (Element ele : elements) {
             //找到对应的考试编号并且标记状态 未未读“F"
-            Map resultMap=new HashMap();
-            if(ele.attribute("paper_id").getText().equals(map.get("examId")) && ele.element("isRead").getText().equals("F")){
-                resultMap.put("paperId",ele.attribute("paper_id").getText());
-                resultMap.put("studentId",ele.attribute("student_id").getText());
-                resultMap.put("questionId",ele.attribute("question_id").getText());
-                resultMap.put("studentAnswer",ele.element("student-answer").getText());
-                ele.element("isRead").setText("T");
+            Map resultMap = new HashMap();
+//            System.out.println("paper_id: "+ele.attribute("paper_id").getText().getClass());
+//            System.out.println("examId:"+map.get("examId").toString().getClass());
+            if (ele.attribute("paper_id").getText().equals(map.get("examId").toString()) && ele.element("isRead").getText().equals("F")) {
+                resultMap.put("paperId", ele.attribute("paper_id").getText());
+                resultMap.put("studentId", ele.attribute("student_id").getText());
+                resultMap.put("questionId", ele.attribute("question_id").getText());
+                resultMap.put("studentAnswer", ele.element("student-answer").getText());
+//                ele.element("isRead").setText("T");
+                String question = getQuestionByquestionIdAndSubjectId(resultMap.get("questionId").toString(), map.get("filePath").toString().trim());
+                if (question != null) {
+                    resultMap.put("title", question);
+                }
+                mapList.add(resultMap);
             }
-            mapList.add(resultMap);
         }
 
         //将修改过后的对象写出到预原题库文件
@@ -502,5 +511,41 @@ public class XMLUtil {
         writer.write(doc);
         writer.close();
         return mapList;
+    }
+
+
+    public static String getQuestionByquestionIdAndSubjectId(String questionId, String filePath) throws Exception {
+        String path = filePath.replace("paperResult", "questionLibrary").replace("result.xml", "4-1.xml");
+//        System.out.println(path);
+        SAXReader reader = new SAXReader();
+        Document doc = reader.read(path);
+        Element rootNode = doc.getRootElement();
+        List<Element> elements = rootNode.elements();
+        for (Element ele : elements) {
+            if (ele.attribute("id").getText().trim().equals(questionId.trim())) {
+                return ele.element("title").getText();
+            }
+        }
+        return null;
+    }
+
+    public static void updateEssayResultStatus(String filePath, String quetionId, String paperId) throws Exception {
+        SAXReader reader = new SAXReader();
+        Document doc = reader.read(filePath);
+//        Document doc=reader.read( "C:\\Users\\TingCong\\IdeaProjects\\OnelineExamSys\\src\\main\\webapp\\file\\paperResult\\6\result.xml");
+        Element rootNode = doc.getRootElement();
+        List<Element> elements = rootNode.elements();
+        for (Element ele : elements) {
+            if (ele.attribute("paper_id").getText().trim().equals(paperId) && ele.attribute("question_id").getText().equals(quetionId)) {
+                ele.element("isRead").setText("T");
+            }
+        }
+        //将修改过后的对象写出到预原题库文件
+        FileOutputStream outputStream = new FileOutputStream(filePath);
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("utf-8");
+        XMLWriter writer = new XMLWriter(outputStream, format);
+        writer.write(doc);
+        writer.close();
     }
 }
