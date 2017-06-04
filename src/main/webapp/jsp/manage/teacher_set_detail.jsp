@@ -142,7 +142,7 @@
                 type:"POST",
                 success:function (result) {
                     var data=result.data;
-                    alert(data.msg);
+                    alert("执行成功！");
                 }
             });
 

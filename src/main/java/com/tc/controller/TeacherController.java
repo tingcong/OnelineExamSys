@@ -76,6 +76,7 @@ public class TeacherController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        resp.setStatus(NumberConstants.STATUS_OK);
         return resp;
     }
 //    C:\Users\TingCong\IdeaProjects\OnelineExamSys\src\main\webapp\file\questionLibrary\1\1-c.xml

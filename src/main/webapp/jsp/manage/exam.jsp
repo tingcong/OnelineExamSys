@@ -26,10 +26,10 @@
             <span class="exam_head">学号：${onlineUser.account}</span>
             <span class="exam_head">姓名：${onlineUser.name}</span>
         </div>
-        <div class="center">
-            <span class="exam_head" id="hole_time">考试限时：分钟</span>
-            <span class="exam_head">剩余时间：<span class="green" id="time"></span>分钟</span>
-        </div>
+        <%--<div class="center">--%>
+            <%--<span class="exam_head" id="hole_time">考试限时：分钟</span>--%>
+            <%--<span class="exam_head">剩余时间：<span class="green" id="time"></span>分钟</span>--%>
+        <%--</div>--%>
     </div>
 </header>
 <div class="main">
@@ -184,7 +184,7 @@
         <div class="alert_msg">注意：考试过程中请不要退出全屏，更不能切换，否则按作弊处理！</div>
         <button class="alert_btn submit_button" id="startButton">开始考试</button>
         <%--<button class="alert_btn submit_button" id="startButton">开始考试</button>--%>
-        <a href="../index.jsp">
+        <a href="${basePath}/jsp/manage/student.jsp">
             <button class="quit_btn submit_button">退出考试</button>
         </a>
     </div>

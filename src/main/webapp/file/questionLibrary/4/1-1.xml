@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<questions count="10">
+<questions count="31"> 
   <question id="1"> 
     <title>动物园有熊猫4只，有猴子是熊猫的3倍。问一共有熊猫和猴子多少只？</title>  
     <choices> 
@@ -9,9 +9,9 @@
       <C>18</C>  
       <D>16</D> 
     </choices>  
-    <answer>1</answer>
+    <answer>1</answer> 
   </question>  
-  <question id="2">
+  <question id="2"> 
     <title>鲁迅原名叫什么</title>  
     <choices> 
       <A>周树人</A>  
@@ -20,84 +20,294 @@
       <D>人人</D> 
     </choices>  
     <answer>1</answer> 
-  </question>
-  <question id="3">
-    <title>鲁迅原名叫什么</title>
+  </question>  
+  <question id="3"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="4"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="5"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="6"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="7"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="8"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="9"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="10"> 
+    <title>鲁迅原名叫什么</title>  
+    <choices> 
+      <A>周树人</A>  
+      <B>周作人</B>  
+      <C>周周</C>  
+      <D>人人</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="11"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="12"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="13"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="14"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="15"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="16"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="17"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="18"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="19"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="20"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="21"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>原子</B>  
+      <C>质子</C>  
+      <D>中子</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="22"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>2</B>  
+      <C>3</C>  
+      <D>5</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="23"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>2</B>  
+      <C>3</C>  
+      <D>5</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="24"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>2</B>  
+      <C>3</C>  
+      <D>5</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="25"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>2</B>  
+      <C>3</C>  
+      <D>5</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="26"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>2</B>  
+      <C>3</C>  
+      <D>5</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="27"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>2</B>  
+      <C>3</C>  
+      <D>5</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="28"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>1</B>  
+      <C>1</C>  
+      <D>1</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="29"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>1</B>  
+      <C>1</C>  
+      <D>1</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="30"> 
+    <title>什么是分子</title>  
+    <choices> 
+      <A>分子</A>  
+      <B>1</B>  
+      <C>1</C>  
+      <D>1</D> 
+    </choices>  
+    <answer>1</answer> 
+  </question>  
+  <question id="31">
+    <title>1+1</title>
     <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
-    </choices>
-    <answer>1</answer>
-  </question>
-  <question id="4">
-    <title>鲁迅原名叫什么</title>
-    <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
-    </choices>
-    <answer>1</answer>
-  </question>
-  <question id="5">
-    <title>鲁迅原名叫什么</title>
-    <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
-    </choices>
-    <answer>1</answer>
-  </question>
-  <question id="6">
-    <title>鲁迅原名叫什么</title>
-    <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
-    </choices>
-    <answer>1</answer>
-  </question>
-  <question id="7">
-    <title>鲁迅原名叫什么</title>
-    <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
-    </choices>
-    <answer>1</answer>
-  </question>
-  <question id="8">
-    <title>鲁迅原名叫什么</title>
-    <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
-    </choices>
-    <answer>1</answer>
-  </question>
-  <question id="9">
-    <title>鲁迅原名叫什么</title>
-    <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
-    </choices>
-    <answer>1</answer>
-  </question>
-  <question id="10">
-    <title>鲁迅原名叫什么</title>
-    <choices>
-      <A>周树人</A>
-      <B>周作人</B>
-      <C>周周</C>
-      <D>人人</D>
+      <A>2</A>
+      <B>1</B>
+      <C>1</C>
+      <D>1</D>
     </choices>
     <answer>1</answer>
   </question>

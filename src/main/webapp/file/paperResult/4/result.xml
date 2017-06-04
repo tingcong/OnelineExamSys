@@ -4,5 +4,17 @@
   <result paper_id="0" student_id="0"> 
     <student-answer>学生的答案</student-answer>  
     <isRead>T/F</isRead> 
+  </result>  
+  <result paper_id="9" question_id="7" student_id="1310400114"> 
+    <student-answer>没有</student-answer>  
+    <isRead>T</isRead> 
+  </result>  
+  <result paper_id="9" question_id="6" student_id="1310400114"> 
+    <student-answer>没有</student-answer>  
+    <isRead>T</isRead> 
+  </result>  
+  <result paper_id="9" question_id="3" student_id="1310400114"> 
+    <student-answer>没有</student-answer>  
+    <isRead>T</isRead> 
   </result> 
 </results>

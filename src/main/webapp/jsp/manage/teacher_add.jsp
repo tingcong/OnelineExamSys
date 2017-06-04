@@ -191,6 +191,7 @@
         }
     }
     function clicks() {
+//        alert("1");
         var data="";
         //考题所属科目
         var subject='"subject":"'+$("#subject option:selected").val()+'"';
@@ -219,14 +220,16 @@
             var single='"title":"'+$("#single_title").val()+'","A":"'+$("#single_A").val()+'","B":"'+$("#single_B").val()+'","C":"'+$("#single_C").val()+'","D":"'+$("#single_D").val()+'","answer":"'+$("#single_right").find("input[name='single_right']").val()+'","level":"'+$("#single_level").find("input[name='single_level']").val()+'"' ;
             data='{'+data+","+single+'}';
         }
-        alert(data);
+        alert(data);//
         $.ajax({
             url:"${basePath}/teacher/addQuestion.htm",
             data:data,
             type:"POST",
             dataType:"json",
             success:function (result) {
-
+                if(result.status==1){
+                    alert("执行成功！")
+                }
             }
         })
     }
